@@ -1,4 +1,5 @@
 import Cocoa
+
 struct Calculator {
     enum Operation {
         case add
@@ -27,6 +28,7 @@ struct Calculator {
     mutating func clearButtonPressed() {
         if value1 != "" && value2 == "" && clearPressed == false {
             value1 = ""
+            operation = .nonePressed
         } else if value2 != "" && clearPressed == false && equalsPressed == false {
             value2 = ""
         } else {
@@ -160,8 +162,10 @@ var cal = Calculator()
 
 cal.inputButtonPressed(.one)
 cal.operationButtonPressed(.add)
+cal.clearButtonPressed()
 cal.inputButtonPressed(.one)
 cal.equalsButtonPressed()
 cal.operationButtonPressed(.add)
 cal.inputButtonPressed(.one)
 print(cal.equalsButtonPressed())
+
