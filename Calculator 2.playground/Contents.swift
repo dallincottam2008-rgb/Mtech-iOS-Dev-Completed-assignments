@@ -6,24 +6,23 @@ struct Calculator {
         case subtract
         case multiply
         case divide
-        case invert
         case percentage
         case nonePressed
     }
     
     enum Numbers {
-        case one, two, three, four, five, six, seven, eight, nine, zero
+        case one, two, three, four, five, six, seven, eight, nine, zero, dot, negative
     }
     
     
-    var value1 = ""
-    var value2 = ""
-    var finalVal = 0.0
-    var finalValue = ""
+    private var value1 = ""
+    private var value2 = ""
+    private var finalVal = 0.0
+    private var finalValue = ""
     private var invertPressed = false
     private var equalsPressed = false
     private var clearPressed = false
-    var operation: Operation = .nonePressed
+    private var operation: Operation = .nonePressed
     
     mutating func clearButtonPressed() {
         if value1 != "" && value2 == "" && clearPressed == false {
@@ -44,35 +43,73 @@ struct Calculator {
     }
     
     mutating func inputButtonPressed(_ input: Numbers) {
-        var appendedInput: Int
+        var appendedInput = ""
         switch input {
         case .one:
-            appendedInput = 1
+            appendedInput = "1"
         case .two:
-            appendedInput = 2
+            appendedInput = "2"
         case .three:
-            appendedInput = 3
+            appendedInput = "3"
         case .four:
-            appendedInput = 4
+            appendedInput = "4"
         case .five:
-            appendedInput = 5
+            appendedInput = "5"
         case .six:
-            appendedInput = 6
+            appendedInput = "6"
         case .seven:
-            appendedInput = 7
+            appendedInput = "7"
         case .eight:
-            appendedInput = 8
+            appendedInput = "8"
         case .nine:
-            appendedInput = 9
+            appendedInput = "9"
         case .zero:
-            appendedInput = 0
+            appendedInput = "0"
+        case .dot:
+            appendedInput = "."
+        case .negative:
+            appendedInput = "-"
         }
-                
-        if operation == .nonePressed  {
-            value1.append(String(appendedInput))
-            appendedInput = 0
+        
+        if operation == .nonePressed || value1 == "" {
+            value1.append(appendedInput)
+            appendedInput = ""
         } else {
-            value2.append(String(appendedInput))
+            value2.append(appendedInput)
+        }
+        
+    }
+    
+    mutating func invertButtonPressed() {
+        if finalVal != 0.0 {
+            operation = .nonePressed
+            equalsPressed = true
+            invertPressed = false
+            clearPressed = false
+            value2 = ""
+            value1 = ""
+            value1 = finalValue
+            finalValue = ""
+            equalsButtonPressed()
+
+        }
+        
+        if equalsPressed {
+            finalVal *= -1
+        } else if var invertedValue1 = Double(value1){
+              if operation == .nonePressed {
+                invertedValue1 *= -1
+                value1 = String(invertedValue1)
+            } else if var invertedValue2 = Double(value2){
+                invertedValue2 *= -1
+                value2 = String(invertedValue2)
+            }
+            
+            if equalsPressed {
+                invertPressed = true
+                equalsPressed = false
+            }
+            
         }
         
     }
@@ -80,35 +117,21 @@ struct Calculator {
     mutating func operationButtonPressed(_ operationPressed: Operation) {
         if equalsPressed {
             equalsPressed = false
-        }
-        
-        if finalVal != 0.0 {
-            value1 = String(finalVal)
-            equalsPressed = false
-            invertPressed = false
-            clearPressed = false
+            value1 = finalValue
             value2 = ""
             finalVal = 0.0
         }
         
+        if finalVal != 0.0 {
+            operation = .nonePressed
+            equalsPressed = true
+            invertPressed = false
+            clearPressed = false
+            finalValue = ""
+        }
+        
+        
         switch operationPressed {
-        case .invert:
-            if var invertedValue1 = Double(value1){
-                if equalsPressed {
-                    finalVal *= -1
-                } else if operation == .nonePressed {
-                    invertedValue1 *= -1
-                    value1 = String(invertedValue1)
-                } else if var invertedValue2 = Double(value2){
-                    invertedValue2 *= -1
-                    value2 = String(invertedValue2)
-                }
-                
-                if equalsPressed {
-                    invertPressed = true
-                }
-            }
-            
         case .add:
             operation = .add
         case .subtract:
@@ -137,18 +160,17 @@ struct Calculator {
                     finalVal += (finalVal1 * finalVal2)
                 case .divide:
                     finalVal += (finalVal1 / finalVal2)
-                case .invert:
-                    return "error"
                 case .percentage:
-                    finalVal += finalVal1 / finalVal2
+                    finalVal += (finalVal1 / finalVal2)
                 case .nonePressed:
                     return ""
                 }
             }
         }
-        let returnedVal = finalVal.formatted(.number)
+        finalValue = String(finalVal)
+        let returnedValFormated = finalVal.formatted(.number)
         guard operation == .percentage else {
-            return String(returnedVal)
+            return String(returnedValFormated)
         }
         let returnedValPercent = finalVal.formatted(.percent)
         return String(returnedValPercent)
@@ -160,12 +182,12 @@ struct Calculator {
 
 var cal = Calculator()
 
+
+
 cal.inputButtonPressed(.one)
-cal.operationButtonPressed(.add)
-cal.clearButtonPressed()
-cal.inputButtonPressed(.one)
-cal.equalsButtonPressed()
 cal.operationButtonPressed(.add)
 cal.inputButtonPressed(.one)
 print(cal.equalsButtonPressed())
-
+cal.operationButtonPressed(.add)
+cal.inputButtonPressed(.one)
+print(cal.equalsButtonPressed())
