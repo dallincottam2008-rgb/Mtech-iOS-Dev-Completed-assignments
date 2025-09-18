@@ -1,6 +1,7 @@
 import Cocoa
 
 struct Calculator {
+    //operators
     enum Operation {
         case add
         case subtract
@@ -9,12 +10,12 @@ struct Calculator {
         case percentage
         case nonePressed
     }
-    
+    // Input finc numbers
     enum Numbers {
         case one, two, three, four, five, six, seven, eight, nine, zero, dot, negative
     }
     
-    
+    //Values
     private var value1 = ""
     private var value2 = ""
     private var finalVal = 0.0
@@ -23,6 +24,7 @@ struct Calculator {
     private var equalsPressed = false
     private var clearPressed = false
     private var operation: Operation = .nonePressed
+    
     
     mutating func clearButtonPressed() {
         if value1 != "" && value2 == "" && clearPressed == false {
@@ -44,6 +46,7 @@ struct Calculator {
     
     mutating func inputButtonPressed(_ input: Numbers) {
         var appendedInput = ""
+        
         switch input {
         case .one:
             appendedInput = "1"
@@ -91,13 +94,13 @@ struct Calculator {
             value1 = finalValue
             finalValue = ""
             equalsButtonPressed()
-
+            
         }
         
         if equalsPressed {
             finalVal *= -1
         } else if var invertedValue1 = Double(value1){
-              if operation == .nonePressed {
+            if operation == .nonePressed {
                 invertedValue1 *= -1
                 value1 = String(invertedValue1)
             } else if var invertedValue2 = Double(value2){
@@ -191,3 +194,7 @@ print(cal.equalsButtonPressed())
 cal.operationButtonPressed(.add)
 cal.inputButtonPressed(.one)
 print(cal.equalsButtonPressed())
+cal.clearButtonPressed()
+cal.inputButtonPressed(.one)
+
+
