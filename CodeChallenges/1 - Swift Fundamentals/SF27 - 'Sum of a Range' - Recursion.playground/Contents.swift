@@ -6,7 +6,15 @@
 
 //  Notes:
     //  The number will always be a positive integer greater than 0.
+func sum(_ num: Int) -> Int {
+    var returnedNum = 0
+    for addNum in 1...num {
+        returnedNum += addNum
+    }
+    return returnedNum
+}
 
+print(sum(8))
 //  Examples:
     //  Input: 2
     //  Math: 1 + 2 = 3
