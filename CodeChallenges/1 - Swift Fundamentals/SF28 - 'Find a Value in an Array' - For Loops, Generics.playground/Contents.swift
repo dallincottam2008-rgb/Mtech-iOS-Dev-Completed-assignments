@@ -7,7 +7,7 @@
     //  Return true if the array contains the value, false if not.
     //  Take note of the wording of this problem. I should be able to pass in either an array of strings or an array of Ints and it will work the same.
 
-//  Notes:
+ //  Notes:
     //  If you're stuck, look up function overloading.
 
 //  Examples:
@@ -21,3 +21,29 @@
     //  Create another function. Accomplish the same goal using generics instead of function overloading.
 
 import Foundation
+func ckeckArray(checkedArray a: [String], value: String) -> Bool{
+    var returnedBool = false
+    
+    for val in a {
+        if val == value {
+            returnedBool = true
+        }
+    }
+    return returnedBool
+}
+
+func ckeckArray(checkedArray a: [Int], value: Int) -> Bool{
+    var returnedBool = false
+    
+    for val in a {
+        if val == value {
+            returnedBool = true
+        }
+    }
+    return returnedBool
+}
+print(ckeckArray(checkedArray: ["Hello", "World"], value: "Hello" ))
+print(ckeckArray(checkedArray: ["Hello", "World"], value: "Hi" ))
+print(ckeckArray(checkedArray: [2, 6], value: 6 ))
+print(ckeckArray(checkedArray: [2, 6], value: 7 ))
+
