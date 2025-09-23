@@ -9,10 +9,18 @@
     //  [sheep, sheep, sheep, sheep, sheep, wolf, sheep, sheep] (YOU ARE HERE AT THE FRONT OF THE QUEUE)
     //    7      6      5      4      3            2      1
     //  If the wolf is the closest animal to you, return "Pls go away and stop eating my sheep". Otherwise, return "Oi! Sheep number N! You are about to be eaten by a wolf!" where N is the sheep's position in the queue.
-
+func wolfAndSheep(_ sheep: [String]) -> String {
+    guard let wolfIndex = sheep.firstIndex(of: "wolf") else {return "there is no wolf"}
+    if wolfIndex == sheep.count - 1 {
+        return "Pls go away and stop eating my sheep"
+    } else {
+        return "Oi! Sheep number \(sheep.count - 1 - wolfIndex)! You are about to be eaten by a wolf!"
+    }
+}
 //  Notes:
     //  There will always be exactly one wolf in the array.
-
+print(wolfAndSheep(["sheep", "sheep", "sheep", "wolf", "sheep"]))
+print(wolfAndSheep(["sheep", "sheep", "wolf"]))
 //  Examples:
     //  Input: ["sheep", "sheep", "sheep", "wolf", "sheep"]
     //  Output: "Oi! Sheep number 1! You are about to be eaten by a wolf!"
