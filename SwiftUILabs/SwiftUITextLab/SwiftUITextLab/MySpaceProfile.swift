@@ -57,7 +57,7 @@ struct ProfileView: View{
             .bold()
             .foregroundStyle(.green)
         Text("Dallin Cottam")
-            .font(.custom("", size: 20))
+            .font(.custom("Avenir", size: 20))
             .bold()
         
         Text("")
@@ -68,7 +68,10 @@ struct ProfileView: View{
             .foregroundStyle(.red)
         
         Text("Pleasant Grove")
-            .font(.custom("", size: 21))
+            .font(.custom("zapfino", size: 25))
+            .bold()
+            .background(.black)
+            .foregroundStyle(Gradient(colors: [.white, .blue]))
         
         Text("")
         
@@ -77,8 +80,12 @@ struct ProfileView: View{
             .bold()
             .foregroundStyle(.blue)
         
-        Text("Nothing, you dont get to know")
-            .font(.custom("", size: 24))
+        Text("I like to do stuff")
+            .font(.custom(".", size: 30))
+//            .bold()
+            .padding(5)
+            .background(.gray)
+            
         
 
     }
@@ -88,12 +95,21 @@ struct TopFiveFriendsView: View {
     var body: some View {
         Text("Top 5 Friends")
             .font(.custom("Rockwell", size: 56))
+            .foregroundStyle(Gradient(colors: [.black, .pink]))
         Text("1: None :(")
+            .font(.custom("", size: 30))
         Text("2: The number 7")
-        Text("3: The guy in the back ally")
+            .font(.custom("snell roundhand", size: 30))
+            .foregroundStyle(.red)
+        Text("3: The guy in the back ally who sells me funny looking pencils")
+            .font(.custom("", size: 25))
+            .foregroundStyle(.green)
         Text("4: This thing -> 👾")
-        Text("5: ")
-        
+            .font(.custom("futura", size: 30))
+            .foregroundStyle(.purple)
+        Text("5: YOU 🫵")
+            .font(.custom("impact", size: 40))
+            .foregroundStyle(.pink)
     }
 }
 
@@ -101,12 +117,15 @@ struct BlogPostView: View {
     var body: some View {
         Text("Dont Read >:(")
             .font(.custom("zapfino", size: 40))
+            .foregroundStyle(.brown)
         Text("09/23/25")
             .font(.custom("Brush Script MT", size: 17))
+            .foregroundStyle(.yellow)
         Text("Read the title ^, this blog post is about nothing and you are reading it, stop!!!!!! I have nothing to say to people who actually read this 😤 there's no point in continuing to read so please spare your self the trouble. Fine i geuss you want me to say something, alright here it goes, ... >:(")
-            .font(.custom("Bradley Hand", size: 20))
+            .font(.custom("Bradley Hand", size: 28))
             .bold()
         
         Text("👍: 100k                💬: -0")
+            .font(.custom("impact", size: 25))
     }
 }
