@@ -34,6 +34,7 @@ import SwiftUI
  - App has a blog post view with a title, a date posted, a body, and a number of likes and comments. All are styled, sized, and colored appropriately.
  */
 
+
 #Preview("ProfileView") {
     ProfileView()
         .background(.white)
@@ -47,4 +48,65 @@ import SwiftUI
 #Preview("BlogPostView") {
     BlogPostView()
         .background(.white)
+}
+
+struct ProfileView: View{
+    var body: some View {
+        Text("DallinC_08")
+            .font(.custom("arial", size: 37))
+            .bold()
+            .foregroundStyle(.green)
+        Text("Dallin Cottam")
+            .font(.custom("", size: 20))
+            .bold()
+        
+        Text("")
+        
+        Text("City:")
+            .font(.custom("arial", size: 24))
+            .bold()
+            .foregroundStyle(.red)
+        
+        Text("Pleasant Grove")
+            .font(.custom("", size: 21))
+        
+        Text("")
+        
+        Text("About:")
+            .font(.custom("arial", size: 25))
+            .bold()
+            .foregroundStyle(.blue)
+        
+        Text("Nothing, you dont get to know")
+            .font(.custom("", size: 24))
+        
+
+    }
+}
+
+struct TopFiveFriendsView: View {
+    var body: some View {
+        Text("Top 5 Friends")
+            .font(.custom("Rockwell", size: 56))
+        Text("1: None :(")
+        Text("2: The number 7")
+        Text("3: The guy in the back ally")
+        Text("4: This thing -> 👾")
+        Text("5: ")
+        
+    }
+}
+
+struct BlogPostView: View {
+    var body: some View {
+        Text("Dont Read >:(")
+            .font(.custom("zapfino", size: 40))
+        Text("09/23/25")
+            .font(.custom("Brush Script MT", size: 17))
+        Text("Read the title ^, this blog post is about nothing and you are reading it, stop!!!!!! I have nothing to say to people who actually read this 😤 there's no point in continuing to read so please spare your self the trouble. Fine i geuss you want me to say something, alright here it goes, ... >:(")
+            .font(.custom("Bradley Hand", size: 20))
+            .bold()
+        
+        Text("👍: 100k                💬: -0")
+    }
 }
