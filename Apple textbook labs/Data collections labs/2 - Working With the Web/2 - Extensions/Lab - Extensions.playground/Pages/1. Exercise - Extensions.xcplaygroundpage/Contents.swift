@@ -32,11 +32,12 @@ extension Rectangle {
     mutating func halved() -> Rectangle{
         var halvedLength = self.length / 2
         var halvedWidth = self.width / 2
-        return Rectangle(length: halvedLength, width: halvedWidth)
+        var halvedRectangle = Rectangle(length: halvedLength, width: halvedWidth)
+        return halvedRectangle
     }
     
     mutating func half() {
-        
+        self = halved()
     }
 }
 /*:
@@ -44,8 +45,11 @@ extension Rectangle {
  
  Below, create a variable `Rectangle` called `myRectangle`, and set its length to 10 and its width to 5. Create a second instance, `mySmallerRectangle`, that's the result of calling `halved()` on `myRectangle`. Then update the values of `myRectangle` by calling `half()` on itself. Print each of the instances.
  */
-
-
+var myRectangle = Rectangle(length: 10, width: 5)
+var mySmallerRectAngle = myRectangle.halved()
+print(mySmallerRectAngle)
+myRectangle.half()
+print(myRectangle)
 /*:
  page 1 of 2  |  [Next: App Exercise - Workout Extensions](@next)
  */

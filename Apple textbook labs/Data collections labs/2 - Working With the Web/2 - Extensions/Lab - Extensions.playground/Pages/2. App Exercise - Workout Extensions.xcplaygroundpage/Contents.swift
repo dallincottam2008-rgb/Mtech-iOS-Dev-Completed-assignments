@@ -11,10 +11,7 @@ struct Workout {
     var averageHR: Int
 }
 
-:CustomStringConvertible
-
-
-extension Workout{
+extension Workout: CustomStringConvertible {
     
 }
 

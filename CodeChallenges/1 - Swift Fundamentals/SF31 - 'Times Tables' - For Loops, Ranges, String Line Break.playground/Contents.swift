@@ -4,7 +4,14 @@
 //  Instructions:
     //  Create a function that prints a multiplication table for any integer.
     //  The table should show its multiples from 1-10.
+func timesTable(_ times: Int) -> String {
+    var timesBy = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    var mappedTable = timesBy.map{$0 * times}
+    return "1 * \(times) = \(timesBy[0]) \n2 * \(times) = \(timesBy[1]) \n3 * \(times) = \(timesBy[2]) \n4 * \(times) = \(timesBy[3]) \n5 * \(times) = \(timesBy[4]) \n6 * \(times) = \(timesBy[5]) \n7 * \(times) = \(timesBy[6]) \n8 * \(times) = \(timesBy[7]) \n9 * \(times) = \(timesBy[8]) \n10 * \(times) = \(timesBy[9]) \n"
+    
+}
 
+print(timesTable(5))
 //  Notes:
     //  You can use "\n" in a string to insert a line break, the equivalent of hitting "return."
 
