@@ -4,7 +4,16 @@
 //  Instructions:
     //  Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
     //  You can return the answer in any order.
-
+func target(nums: [Int], target: Int) -> [Int]? {
+    for (index,num) in nums.enumerated() {
+        let neededNum = target - num
+        if let pairIndex = nums.firstIndex(of: neededNum) {
+            return  [index, pairIndex]
+        }
+    }
+    return nil
+}
+print(target(nums: [2,7,11,15], target: 9))
 //  Examples:
     //  Input: nums = [2,7,11,15], target = 9
     //  Output: [0,1]
