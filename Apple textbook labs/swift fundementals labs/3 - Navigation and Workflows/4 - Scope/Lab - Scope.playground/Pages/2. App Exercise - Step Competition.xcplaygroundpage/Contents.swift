@@ -8,6 +8,16 @@
 struct User {
     var name: String
     var stepsToday: Int
+    
+    init?(name: String?, stepsToday: Int?) {
+        
+        guard let unwrappedName = name, !unwrappedName.isEmpty else { return nil}
+        guard let unwrappedStepsToday = stepsToday, unwrappedStepsToday != 0 else { return nil }
+        self.name = unwrappedName
+        self.stepsToday = unwrappedStepsToday
+    }
+    
+    
 }
 
 let stepMaster = User(name: "StepMaster", stepsToday: 8394)
@@ -24,8 +34,8 @@ func getWinner(competitors: [User]) -> User? {
     var topCompetitor: User?
 
     for competitor in competitors {
-        if var topCompetitor = topCompetitor {
-            if competitor.stepsToday > topCompetitor.stepsToday {
+        if let aTopCompetitor = topCompetitor {
+            if competitor.stepsToday > aTopCompetitor.stepsToday {
                 topCompetitor = competitor
             }
         } else {
@@ -35,7 +45,8 @@ func getWinner(competitors: [User]) -> User? {
     return topCompetitor
 }
 
-
+var winner = getWinner(competitors: competitors as! [User])?.name
+print(winner)
 //:  Write a memberwise initializer inside the `User` struct above that uses variable shadowing for naming the parameters of the initializer.
 
 
