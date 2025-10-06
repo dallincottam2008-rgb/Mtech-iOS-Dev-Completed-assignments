@@ -6,8 +6,14 @@
 //
 
 import SwiftUI
+import Observation
+
+
 
 struct ContentView: View {
+    
+    let randomButton: [String] = ["Setting", "Notifications", "Events", "Contacts", "Security", "Other"]
+    
     var body: some View {
         VStack(alignment: .center) {
             HStack {
@@ -36,25 +42,21 @@ struct ContentView: View {
                     }
                 }
             }
-            VStack (alignment: .leading){
-                HStack {
-                    Image(systemName: "gearshape.fill")
-                        .frame(width: 25, height: 25)
-                    Text("Settings")
-                }
-                HStack {
-                    Image(systemName: "bell.fill")
-                        .frame(width: 25, height: 25)
-                    Text("Notifications")
-                }
-                HStack {
-                    Image(systemName: "calendar")
-                        .frame(width: 25, height: 25)
-                    Text("Events")
+            ZStack {
+                Rectangle()
+                    .fill(Color.blue)
+                    .frame(width: 150, height: 300)
+                    .cornerRadius(15)
+                VStack (alignment: .leading){
+                    ForEach(randomButton, id: \.self) { randomButton in
+                        Text(randomButton)
+                            .font(.custom(".", size: 20))
+                            .bold()
+                            .padding(4)
+                    }
                 }
             }
         }
-           
     }
 }
 

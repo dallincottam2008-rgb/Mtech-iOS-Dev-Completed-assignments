@@ -15,6 +15,7 @@
 
 /*
  Merge Sorts are more efficient because...
- 
+ Its way more stable than most others, because the relitvie order of equal elemnts are the smae in ht einput and the output
  We need to learn about sorting algorithms so that...
+ we understand how the computer works and thinks so i fwe need to debug we know whats itsa doing and find the problem and fix it faster
  */

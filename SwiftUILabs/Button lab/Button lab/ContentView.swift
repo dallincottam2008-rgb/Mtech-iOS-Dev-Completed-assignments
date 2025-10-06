@@ -18,6 +18,11 @@ struct ContentView: View {
     @State private var button1Text = "Button 1"
     @State private var changeButtonColor = false
     @State private var buttonPressCount = 0
+    @State private var disableButton2 = false
+    @State private var button4Text = Image(systemName: "button.programmable")
+    @State private var disableButton4 = false
+    @State private var showButton7 = true
+    @State private var secretTextCount = 0
     
     var body: some View {
         VStack {
@@ -26,53 +31,63 @@ struct ContentView: View {
             }
             .buttonStyle(MyButtonStyle())
             
-            Button (action: disableButton) {
-                Text("Button 2")
+            Button ("tbh might break when you press") {
+                disableButton2 = true
             }
             .buttonStyle(MyButtonStyle())
-            .disabled(true)
+            .disabled(disableButton2)
             
-            Button (action: disableButton) {
+            Button (action: disableButtonFunc) {
                 Text("Button 3")
             }
             .buttonStyle(MyButtonStyle())
             .frame(width: 700)
             
-            Button (action: disableButton) {
-                Image(systemName: "button.programmable")
+            Button (action: pressedButton4) {
+                Text(button4Text)
+                
             }
             .buttonStyle(MyButtonStyle())
             .frame(width: 40)
+            .disabled(disableButton4)
             
-            Button (action: disableButton) {
+            Button (action: disableButtonFunc) {
                 Text("Button 5")
             }
             .buttonStyle(MyButtonStyle2())
             
-            Button (action: disableButton) {
-                Text("Button 6")
+            Button (action: buttonCounter) {
+                Text("pess number: \(buttonPressCount)")
             }
             .buttonStyle(MyButtonStyle())
             
-            Button (action: disableButton) {
-                Text("Button 7")
+            
+            if showButton7 {
+                Button ("Delete this button") {
+                    showButton7 = false
+                }
+                .buttonStyle(MyButtonStyle())
+            }
+            
+            Button ("Idk what this one does") {
+                secretTextCount += 1
             }
             .buttonStyle(MyButtonStyle())
             
-            Button (action: disableButton) {
-                Text("Button 8")
+            if secretTextCount >= 3 {
+                Button ("Oh thats what it does") { }
+                .buttonStyle(MyButtonStyle())
+            }
+            
+            Button ("This one doesn't work, it forgot what to do") {
             }
             .buttonStyle(MyButtonStyle())
             
-            Button (action: disableButton) {
-                Text("Button 9")
+            Button (action: crashApp) {
+                Text("DONT PRESS NO MATTER WHAT")
             }
             .buttonStyle(MyButtonStyle())
             
-            Button (action: disableButton) {
-                Text("Button 10")
-            }
-            .buttonStyle(MyButtonStyle())
 
         }
         .padding()
@@ -82,13 +97,21 @@ struct ContentView: View {
         button1Text = "Button 1 pressed"
     }
     
-    
-    
-    func disableButton() {
+    func buttonCounter() {
         buttonPressCount += 1
-        if buttonPressCount == 9 {
-            
-        }
+
+    }
+    
+    func pressedButton4() {
+        button4Text = Image(systemName: "circle")
+    }
+    
+    func disableButtonFunc() {
+     
+    }
+    
+    func crashApp(){
+        fatalError()
     }
 }
 
@@ -120,6 +143,7 @@ struct MyButtonStyle2: ButtonStyle {
             .animation(.easeOut, value: configuration.isPressed)
     }
 }
+
 
 
 #Preview {
