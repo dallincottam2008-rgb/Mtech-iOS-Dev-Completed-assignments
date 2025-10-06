@@ -9,13 +9,13 @@
  */
 //struct UserAge {
 //    let userInputAge: String = "34e"
-//    let userAge: Int
+//    let userAge: Int?
 //    
-//    init(userAge: Int) {
+//    init(userAge: Int?) {
 //        self.userAge = userAge
 //    }
 //}
-
+//print(test)
 //:  Go back and change the type of `userAge` to `Int?`, and print the value of `userAge`. Why is `userAge`'s value `nil`? Provide your answer in a comment or print statement below.
 
 
