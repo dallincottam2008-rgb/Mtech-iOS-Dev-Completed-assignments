@@ -4,7 +4,27 @@
 //  Instructions:
     // The API you're using needs a specific format for phone numbers: (xxx)-xxx-xxxx.
     // Write a throwing function that takes in a string and returns a formatted phone string, or throws if the string that was passed in is not a valid phone number.
-
+func phoneNumber(_ numString: String) -> String? {
+    
+    var numCheck = false
+    var number: [Int] = []
+    
+    for num in numString {
+        
+        if let num = num as? Int {
+            
+            number.append(num)
+            if num >= 10 || num < 0 {
+                numCheck = true
+            }
+        }
+    }
+    
+    guard number.count == 10 && !numCheck else { return nil }
+    let phoneNum = "(\(number[0])\(number[1])\(number[2]))-\(number[3])\(number[4])\(number[5])-\(number[6])\(number[7])\(number[8])\(number[9])"
+    return phoneNum
+}
+print(phoneNumber("1234567890")
 //  Examples:
     //  Input: "5558675309"
     //  Output: "(555)-867-5309"
