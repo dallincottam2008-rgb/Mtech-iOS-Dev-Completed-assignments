@@ -7,7 +7,15 @@
 
 //  Notes:
     //  You may assume the string will not contain any punctuation, but different capitalizations of a word should count as the same word.
+func howManyWords(in string: String) -> [String: Int] {
+    var arrayOfString = string.split(separator: " ")
+    let set = NSCountedSet(array: allWords)
+    for object in set
+    
+    return returnedDictionary
+}
 
+print(howManyWords(in: "Beware the Jabberwock my son The jaws that bite The claws that catch"))
 //  Examples:
     //  Input: "Beware the Jabberwock my son The jaws that bite The claws that catch"
     //  Output: ["son": 1, "jabberwock": 1, "my": 1, "beware": 1, "jaws": 1, "that": 2, "the": 3, "claws": 1, "catch": 1, "bite": 1]

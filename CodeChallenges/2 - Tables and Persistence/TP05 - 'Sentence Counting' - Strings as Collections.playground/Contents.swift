@@ -16,5 +16,16 @@
 import Foundation
 
 func countSentences(_ sentence: String) -> Int {
-    return 0
+    var sentenceCount = 0
+    
+    for element in sentence {
+        if element == "." || element == "?" || element == "!" {
+            sentenceCount += 1
+        }
+    }
+    
+    
+    return sentenceCount
 }
+
+print(countSentences("Alas, poor Yorick! I knew him, Horatio: a fellow of infinite jest, of most excellent fancy: he hath borne me on his back a thousand times; and now, how abhorred in my imagination it is! my gorge rims at it."))
