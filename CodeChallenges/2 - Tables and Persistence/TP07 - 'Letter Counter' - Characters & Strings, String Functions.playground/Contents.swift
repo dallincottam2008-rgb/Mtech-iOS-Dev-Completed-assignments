@@ -21,12 +21,15 @@ import Foundation
 
 func printCountOfEachLetter1(in string: String) {
     var countsByLetter = [Character : Int]()
+  
     for character in string {
-        countsByLetter[character, default: 0] += 1
+        if character.isLetter {
+            countsByLetter[character, default: 0] += 1
+        }
     }
     for (letter, count) in countsByLetter {
         print("Found \(count) letter \(letter)")
     }
 }
 
-printCountOfEachLetter1(in: "pepper")
+printCountOfEachLetter1(in: "pe&&&*(7778764354pp........er")

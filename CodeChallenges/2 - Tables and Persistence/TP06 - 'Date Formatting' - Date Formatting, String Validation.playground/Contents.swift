@@ -18,5 +18,9 @@
 import Foundation
 
 func convertToDate(_ dateString: String) -> Date? {
-    return nil
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    return dateFormatter.date(from: dateString)
 }
+
+print(convertToDate("2025-10-14"))
