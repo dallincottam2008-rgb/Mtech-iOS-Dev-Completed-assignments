@@ -10,20 +10,23 @@ import Observation
 @Observable
 class QuizManager {
     
-    var currentQuestion: Int = 0
+    var currentQuestionIndex: Int = 0
+    var currentQuestion: Question {
+        return questionList[currentQuestionIndex]
+    }
     var selectedAnswers: [AnswerType] = []
-//    let questionList: [Question] = [
-//        Question(
-//            text: "Single Answer Question",
-//            type: .single,
-//            answers: [
-//                Answer(text: "Answer1", type: .answer1),
-//                Answer(text: "Answer2", type: .answer2),
-//                Answer(text: "Answer3", type: .answer3),
-//                Answer(text: "Answer4", type: .answer4)
-//            ]
-//        )
-//    ]
+    let questionList: [Question] = [
+        Question(
+            text: "Single Answer Question",
+            type: .multiple,
+            answers: [
+                Answer(text: "Answer1", type: .answer1),
+                Answer(text: "Answer2", type: .answer2),
+                Answer(text: "Answer3", type: .answer3),
+                Answer(text: "Answer4", type: .answer4)
+            ]
+        )
+    ]
     
     func selectAnswer(answered: Bool, answerType: AnswerType) {
     
@@ -33,7 +36,6 @@ class QuizManager {
             if let remove = selectedAnswers.firstIndex(of: .answer1){
                 selectedAnswers.remove(at: remove)
             }
-//
         }
     }
 }

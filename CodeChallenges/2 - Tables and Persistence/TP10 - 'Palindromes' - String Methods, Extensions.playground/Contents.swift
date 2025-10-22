@@ -20,3 +20,28 @@
     //  "A man, a plan, a canal - panama!" is a famous palindrome by Leigh Mercer; Dan Hoey expanded it to 540 words: 🔗http://complex.gmu.edu/people/ernie/witty/Hoey_palindrome.html
 
 import Foundation
+func isPalindrome(_ word: String) -> Bool {
+    var word2 = String(word.reversed())
+    if word2.lowercased() == word.lowercased() {
+        return true
+    } else {
+        return false
+    }
+}
+
+print(isPalindrome("Rotator"))
+print(isPalindrome("Hello"))
+
+//func isPalindrome2(_ word: String) -> Bool {
+//    var noSpaces = word.filter{ $0.isletter }
+//    var noSpacesReversed = String(noSpaces.reversed())
+//    
+//    if noSpaces.lowercased() == noSpacesReversed.lowercased() {
+//        return true
+//    } else {
+//        return false
+//    }
+//}
+
+//print(isPalindrome2("Taco Cat"))
+//print(isPalindrome2("Hello World!"))

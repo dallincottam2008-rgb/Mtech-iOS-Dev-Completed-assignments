@@ -9,7 +9,8 @@ import SwiftUI
 
 struct TitleView: View {
     
-    @State var quizManger = QuizManager()
+    @State var quizManager = QuizManager()
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .center) {
@@ -18,8 +19,7 @@ struct TitleView: View {
                     .font(.custom("", size: 40))
                 
                 NavigationLink {
-                    SingleQuestionSubView()
-                    //                        .environment(quizManager)
+                    MultipleQuestionSubView()
                 } label: {
                     Text("Begin")
                         .font(.custom("", size: 20))
@@ -29,8 +29,8 @@ struct TitleView: View {
             .padding()
             
         }
-        .environment(quizManger)
-
+        .environment(quizManager)
+        
     }
     
     func onBeginPress() {
@@ -39,8 +39,6 @@ struct TitleView: View {
 }
 
 struct QuestionFlowView: View {
-    @Environment(QuizManager.self) var quizManger
-    
     var body: some View {
         VStack {
             
@@ -49,85 +47,43 @@ struct QuestionFlowView: View {
     }
 }
 
-struct RangedQuestionSubView: View {
-    var body: some View {
-        VStack {
+//struct RangedQuestionSubView: View {
+    
+//    private var quizManager = QuizManager()
+//    @State private var sliderVal = 2.0
+//    @State private var currentAnswer: String
+//    @State private var selectedAnswers = QuizManager().selectedAnswers
+//    @State private var questions = QuizManager().questionList
+//    @State private var testAnswer = [
+//        Answer(text: "Answer1", type: .answer1),
+//        Answer(text: "Answer2", type: .answer2),
+//        Answer(text: "Answer3", type: .answer3),
+//        Answer(text: "Answer4", type: .answer4)
+//    ]
+//    var body: some View {
+//        VStack {
             
-        }
-        .padding()
-    }
-}
+//            Text("\(Int(sliderVal))")
+//            switch Int(sliderVal) {
+//            case 1:
+////                currentAnswer = testAnswer
+//            case 2:
+//            case 3:
+//            case 4:
+//            default:
+//            }
+//                
+                
+                
+//            }
+//            Slider(value: $sliderVal, in: 1...4, step: 1)
+//        }
+//        .padding()
+//    }
+//}
 
-struct MultipleQuestionSubView: View {
-    
-    @State private var toggle1 = false
-    @State private var toggle2 = false
-    @State private var toggle3 = false
-    @State private var toggle4 = false
-    @State private var quizManager = QuizManager()
-    @State var selectedAnswers = QuizManager().selectedAnswers
-    @State private var answerTest: [Answer] =  [
-        Answer(text: "Answer1", type: .answer1, selected: false),
-        //        Answer(text: "Answer2", type: .answer2),
-        //        Answer(text: "Answer3", type: .answer3),
-        //        Answer(text: "Answer4", type: .answer4)
-    ]
-    
-    var body: some View {
-        VStack {
-            ForEach(answerTest) { answer in
-                //                @State var selected = answer.selected
-                //                Toggle(answer.text, isOn: $answer.selcted)
-                //                    .modifier(ToggleCustomStyle())
-                //                    .onChange(of: toggle1) {
-                //                        quizManager.selectAnswer(answered: toggle1, answerType: answer.type)
-                //                    }
-            }
-            //            Toggle("Test1", isOn: $toggle1)
-            //                .modifier(ToggleCustomStyle())
-            //                .onChange(of: toggle1) {
-            //                    quizManager.selectAnswer(answered: toggle1, answerType: .answer1)
-            //                }
-            //            Toggle("Test2", isOn: $toggle2)
-            //                .modifier(ToggleCustomStyle())
-            //            if toggle2 {
-            //                Text("Toggle 2 on")
-            //            }
-            //            Toggle("Test3", isOn: $toggle3)
-            //                .modifier(ToggleCustomStyle())
-            //            if toggle3 {
-            //                Text("Toggle 3 on")
-            //            }
-            //            Toggle("Test4", isOn: $toggle4)
-            //                .modifier(ToggleCustomStyle())
-            //            if toggle4 {
-            //                Text("Toggle 4 on")
-            //            }
-            //
-        }
-        .padding()
-    }
-}
 
-struct SingleQuestionSubView: View {
-    //    @Environment(QuizManager.self) var quizManager
-    
-    var body: some View {
-        NavigationStack {
-            VStack {
-                //                Button ("HI") {}
-                NavigationLink {
-                    
-                } label: {
-                    Text("Next")
-                }
-                //                just a test to see if the selectAnswer func in working
-                .buttonStyle(MyCustomButtonStyle())
-            }
-            .padding()
-        }
-    }
-}
+
 
 
 struct RelustsView: View {
@@ -141,7 +97,8 @@ struct RelustsView: View {
 
 
 
-struct Question {
+struct Question: Identifiable {
+    var id = UUID()
     var text: String
     var type: ResponseType
     var answers: [Answer]
@@ -154,7 +111,7 @@ struct Answer: Identifiable {
     var id = UUID()
     var text: String
     var type: AnswerType
-    var selected: Bool
+    var selected: Bool = false
 }
 enum AnswerType {
     case answer1, answer2, answer3, answer4
@@ -181,12 +138,4 @@ struct ToggleCustomStyle: ViewModifier {
 }
 #Preview {
     TitleView()
-}
-
-#Preview {
-    SingleQuestionSubView()
-}
-
-#Preview {
-    MultipleQuestionSubView()
 }
