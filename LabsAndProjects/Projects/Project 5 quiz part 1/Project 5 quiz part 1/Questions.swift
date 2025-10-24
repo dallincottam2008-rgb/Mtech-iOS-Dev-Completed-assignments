@@ -5,17 +5,16 @@
 //  Created by Dallin J Cottam on 10/14/25.
 //
 import SwiftUI
-import Observation
 
-@Observable
-class QuizManager {
+@Observable class QuizManager {
     
+    var selectedAnswersBool: [Bool] = []
     var currentQuestionIndex: Int = 0
     var currentQuestion: Question {
         return questionList[currentQuestionIndex]
     }
     var selectedAnswers: [AnswerType] = []
-    let questionList: [Question] = [
+    var questionList: [Question] = [
         Question(
             text: "Single Answer Question",
             type: .multiple,
@@ -25,11 +24,22 @@ class QuizManager {
                 Answer(text: "Answer3", type: .answer3),
                 Answer(text: "Answer4", type: .answer4)
             ]
+        ),
+        Question(
+            text: "Single Answer Question",
+            type: .single,
+            answers: [
+                Answer(text: "Answer5", type: .answer1),
+                Answer(text: "Answer6", type: .answer2),
+                Answer(text: "Answer7", type: .answer3),
+                Answer(text: "Answer8", type: .answer4)
+            ]
         )
     ]
     
-    func selectAnswer(answered: Bool, answerType: AnswerType) {
     
+    func selectAnswer(answered: Bool, answerType: AnswerType) {
+
         if answered {
             selectedAnswers.append(.answer1)
         } else {

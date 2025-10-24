@@ -19,7 +19,15 @@ struct TitleView: View {
                     .font(.custom("", size: 40))
                 
                 NavigationLink {
-                    MultipleQuestionSubView()
+                    switch quizManager.questionList[quizManager.currentQuestionIndex].type {
+                    case .multiple:
+                        MultipleQuestionSubView()
+                    case .single:
+                        SingleQuestionSubView()
+                    case .ranged:
+                        RangedQuestionSubView()
+                    }
+                
                 } label: {
                     Text("Begin")
                         .font(.custom("", size: 20))
@@ -27,14 +35,8 @@ struct TitleView: View {
                 .buttonStyle(MyCustomButtonStyle())
             }
             .padding()
-            
         }
         .environment(quizManager)
-        
-    }
-    
-    func onBeginPress() {
-        
     }
 }
 
@@ -47,23 +49,12 @@ struct QuestionFlowView: View {
     }
 }
 
-//struct RangedQuestionSubView: View {
+struct RangedQuestionSubView: View {
     
-//    private var quizManager = QuizManager()
-//    @State private var sliderVal = 2.0
-//    @State private var currentAnswer: String
-//    @State private var selectedAnswers = QuizManager().selectedAnswers
-//    @State private var questions = QuizManager().questionList
-//    @State private var testAnswer = [
-//        Answer(text: "Answer1", type: .answer1),
-//        Answer(text: "Answer2", type: .answer2),
-//        Answer(text: "Answer3", type: .answer3),
-//        Answer(text: "Answer4", type: .answer4)
-//    ]
-//    var body: some View {
-//        VStack {
+    
+    var body: some View {
+        VStack {
             
-//            Text("\(Int(sliderVal))")
 //            switch Int(sliderVal) {
 //            case 1:
 ////                currentAnswer = testAnswer
@@ -72,15 +63,13 @@ struct QuestionFlowView: View {
 //            case 4:
 //            default:
 //            }
-//                
                 
                 
-//            }
+                
+            }
 //            Slider(value: $sliderVal, in: 1...4, step: 1)
-//        }
-//        .padding()
-//    }
-//}
+        }
+}
 
 
 
@@ -95,27 +84,6 @@ struct RelustsView: View {
     }
 }
 
-
-
-struct Question: Identifiable {
-    var id = UUID()
-    var text: String
-    var type: ResponseType
-    var answers: [Answer]
-}
-enum ResponseType {
-    case single, multiple, ranged
-}
-
-struct Answer: Identifiable {
-    var id = UUID()
-    var text: String
-    var type: AnswerType
-    var selected: Bool = false
-}
-enum AnswerType {
-    case answer1, answer2, answer3, answer4
-}
 
 struct MyCustomButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {

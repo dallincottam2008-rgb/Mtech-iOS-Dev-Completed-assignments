@@ -7,14 +7,15 @@
 import SwiftUI
 
 struct SingleQuestionSubView: View {
-    private var quizManager = QuizManager()
-    @State private var selectedAnswers = QuizManager().selectedAnswers
-    @State private var questions = QuizManager().questionList
+    @Environment(QuizManager.self) var quizManager
+//    private var quizManager = QuizManager()
+//    @State private var selectedAnswers = QuizManager().selectedAnswers
+//    @State private var questions = QuizManager().questionList
     @State private var testAnswer = [
-        Answer(text: "Answer1", type: .answer1),
-        Answer(text: "Answer2", type: .answer2),
-        Answer(text: "Answer3", type: .answer3),
-        Answer(text: "Answer4", type: .answer4)
+        Answer(text: "Answer5", type: .answer1),
+        Answer(text: "Answer6", type: .answer2),
+        Answer(text: "Answer7", type: .answer3),
+        Answer(text: "Answer8", type: .answer4)
     ]
     var body: some View {
         VStack {
@@ -22,11 +23,14 @@ struct SingleQuestionSubView: View {
                 Toggle(answer.text, isOn: $answer.selected)
                     .modifier(ToggleCustomStyle())
                     .onChange(of: answer.selected) {
-                        
                         quizManager.selectAnswer(answered: answer.selected, answerType: answer.type)
                     }
             }
         }
         .padding()
     }
+}
+
+#Preview {
+    SingleQuestionSubView()
 }

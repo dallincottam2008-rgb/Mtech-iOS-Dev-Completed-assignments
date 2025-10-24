@@ -18,3 +18,22 @@
     //  Modify the function to accept an optional third parameter. This parameter should be a closure that takes an integer as input and returns a boolean value. This closure allows you to define custom logic for what constitutes a "positive" or "negative" number.
 
 import Foundation
+
+func sumBySign(_ Array: [Int]) -> [Int] {
+    var returnedArray: [Int] = []
+    var numOfPostive = 0
+    var countOfNeg = 0
+    
+    for num in Array {
+        if num < 0 {
+            countOfNeg += num
+        } else if num > 0 {
+            numOfPostive += 1
+        }
+    }
+    returnedArray.append(numOfPostive)
+    returnedArray.append(countOfNeg)
+    return returnedArray
+}
+
+print(sumBySign([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15]))
