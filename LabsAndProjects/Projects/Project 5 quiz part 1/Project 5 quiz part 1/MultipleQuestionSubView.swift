@@ -8,30 +8,22 @@ import SwiftUI
 
 struct MultipleQuestionSubView: View {
     @Environment(QuizManager.self) var quizManager
-    @State var temp = false
+//    @Bindable var quizManager: QuizManager
+//    @State var temp = false
 
     var body: some View {
         NavigationStack {
             VStack {
-                ForEach(quizManager.currentQuestion.answers) { answer in
-                    Toggle(answer.text, isOn: $temp)
+                @Bindable var toggle = quizManager
+                ForEach($toggle.questionList[quizManager.currentQuestionIndex].answers) { $answer in
+                    Toggle(answer.text, isOn: $answer.selected)
                         .modifier(ToggleCustomStyle())
                         .onChange(of: answer.selected) {
-                            quizManager.selectAnswer(answered: answer.selected, answerType: answer.type)
+                            quizManager.selectAnswer(answer: answer,  answerType: answer.type)
                         }
                 }
-                NavigationLink {
-                    switch quizManager.questionList[quizManager.currentQuestionIndex + 1].type {
-                    case .multiple:
-                        MultipleQuestionSubView()
-                    case .single:
-                        SingleQuestionSubView()
-                    case .ranged:
-                        RangedQuestionSubView()
-                    }
-                } label: {
-                    Text("Next")
-                }
+                Text("\(quizManager.selectedAnswers)")
+                
             }
         }
     }

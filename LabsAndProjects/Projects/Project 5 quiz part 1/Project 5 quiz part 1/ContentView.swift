@@ -19,15 +19,8 @@ struct TitleView: View {
                     .font(.custom("", size: 40))
                 
                 NavigationLink {
-                    switch quizManager.questionList[quizManager.currentQuestionIndex].type {
-                    case .multiple:
-                        MultipleQuestionSubView()
-                    case .single:
-                        SingleQuestionSubView()
-                    case .ranged:
-                        RangedQuestionSubView()
-                    }
-                
+                    QuestionFlowView(question: quizManager.questionList[0])
+                    
                 } label: {
                     Text("Begin")
                         .font(.custom("", size: 20))
@@ -41,11 +34,33 @@ struct TitleView: View {
 }
 
 struct QuestionFlowView: View {
+    @Environment(QuizManager.self) var quizManager
+    var question: Question
     var body: some View {
-        VStack {
-            
+        NavigationStack{
+            VStack {
+                Text(question.text)
+                
+                switch question.type {
+                case .multiple:
+                    MultipleQuestionSubView()
+                case .single:
+                    SingleQuestionSubView()
+                case .ranged:
+                    SingleQuestionSubView()
+                }
+                NavigationLink("Next") {
+                    if let nextQuestion = quizManager.nextQuestion(after: question) {
+                        QuestionFlowView(question: nextQuestion)
+                    }
+//                    else {
+//                        ResultsView()
+//                    }
+                }
+                
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
@@ -55,34 +70,27 @@ struct RangedQuestionSubView: View {
     var body: some View {
         VStack {
             
-//            switch Int(sliderVal) {
-//            case 1:
-////                currentAnswer = testAnswer
-//            case 2:
-//            case 3:
-//            case 4:
-//            default:
-//            }
-                
-                
-                
-            }
-//            Slider(value: $sliderVal, in: 1...4, step: 1)
-        }
-}
-
-
-
-
-
-struct RelustsView: View {
-    var body: some View {
-        VStack {
+            //            switch Int(sliderVal) {
+            //            case 1:
+            ////                currentAnswer = testAnswer
+            //            case 2:
+            //            case 3:
+            //            case 4:
+            //            default:
+            //            }
+            
+            
             
         }
-        .padding()
+        //            Slider(value: $sliderVal, in: 1...4, step: 1)
     }
 }
+
+
+
+
+
+
 
 
 struct MyCustomButtonStyle: ButtonStyle {

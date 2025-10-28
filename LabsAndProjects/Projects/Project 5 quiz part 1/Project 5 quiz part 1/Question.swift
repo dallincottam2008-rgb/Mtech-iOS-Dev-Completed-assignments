@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct Question: Identifiable {
+struct Question: Identifiable, Equatable {
+    static func == (lhs: Question, rhs: Question) -> Bool { true }
     var id = UUID()
     var text: String
     var type: ResponseType

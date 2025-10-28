@@ -19,21 +19,24 @@
 
 import Foundation
 
-func sumBySign(_ Array: [Int]) -> [Int] {
-    var returnedArray: [Int] = []
+func sumBySign(_ array: [Int]) -> [Int]? {
     var numOfPostive = 0
     var countOfNeg = 0
-    
-    for num in Array {
+    guard !array.isEmpty else { return nil }
+
+    for num in array {
         if num < 0 {
             countOfNeg += num
         } else if num > 0 {
             numOfPostive += 1
         }
     }
-    returnedArray.append(numOfPostive)
-    returnedArray.append(countOfNeg)
-    return returnedArray
+    
+    return [numOfPostive, countOfNeg]
 }
 
-print(sumBySign([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15]))
+let result = sumBySign([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15])
+
+if let result {
+    print(result)
+}

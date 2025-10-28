@@ -5,15 +5,18 @@
 //  Created by Dallin J Cottam on 10/14/25.
 //
 import SwiftUI
+import Foundation
+import Observation
 
-@Observable class QuizManager {
+@Observable
+class QuizManager {
     
-    var selectedAnswersBool: [Bool] = []
+//    @State var selectedAnswersBool: [Bool] = []
     var currentQuestionIndex: Int = 0
     var currentQuestion: Question {
         return questionList[currentQuestionIndex]
     }
-    var selectedAnswers: [AnswerType] = []
+    var selectedAnswers: [Answer] = []
     var questionList: [Question] = [
         Question(
             text: "Single Answer Question",
@@ -37,14 +40,29 @@ import SwiftUI
         )
     ]
     
-    
-    func selectAnswer(answered: Bool, answerType: AnswerType) {
-
-        if answered {
-            selectedAnswers.append(.answer1)
+    func nextQuestion(after question: Question) -> Question? {
+        let index = questionList.firstIndex(of: question)
+        
+        if let index, index < questionList.count - 1 {
+            return questionList[index + 1]
         } else {
-            if let remove = selectedAnswers.firstIndex(of: .answer1){
-                selectedAnswers.remove(at: remove)
+            return nil
+        }
+    }
+    
+    func selectAnswer(answer: Answer, answerType: AnswerType) {
+        // need to actually loop through each selected item
+//        if answered {
+//            selectedAnswers.append(answerType)
+//        } else {
+//            if let remove = selectedAnswers.firstIndex(of: answerType){
+//                selectedAnswers.remove(at: remove)
+//            }
+//        }
+        guard let remove = selectedAnswers.firstIndex(of: answer) else { return }
+        for answer in selectedAnswers {
+            if !answer.selected {
+                selectedAnswers.remove(at: )
             }
         }
     }

@@ -14,3 +14,35 @@
     //  Create another function that can accept as input any string that has previously been returned and give you the original input string.
 
 import Foundation
+
+func removeSpaces(in string: String) -> String {
+    string.filter{ $0 != " " }
+}
+
+print(removeSpaces(in: "Hello, world!"))
+
+func removeSpaces2(in string: String) -> String {
+    var lastCharacter = ""
+    var retrunedString = ""
+    
+    for letter in string {
+        if letter == " " && lastCharacter == "" {
+            lastCharacter = ""
+            continue
+        } else if letter == "." || letter == "!" || letter == "?" {
+            retrunedString.append(letter)
+            lastCharacter = String(letter)
+        } else if letter == " " && lastCharacter != "" {
+            retrunedString.append(letter)
+            lastCharacter = ""
+        } else {
+            retrunedString.append(letter)
+            lastCharacter = ""
+        }
+    }
+    return retrunedString
+}
+
+print(removeSpaces2(in: "Hello! World, Hello world"))
+print("HI")
+

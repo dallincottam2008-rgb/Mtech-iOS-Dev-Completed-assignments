@@ -18,3 +18,29 @@
 
 import Foundation
 
+func isWilsonPrime(_ p: Int) -> Bool {
+//    if p == 5 || p == 13 || p == 563 {
+//        return true
+//    } else {
+//        return false
+//    }
+    let factorialP = isFactorial(p - 1)
+    let wilsonNum = (factorialP + 1) / p * p
+    
+    if  {
+        return true
+    } else {
+        return false
+    }
+}
+
+
+func isFactorial(_ num: Int) -> Int {
+    if num == 0 {
+        return 1
+    } else {
+        return num * isFactorial(num - 1)
+    }
+}
+
+print(isWilsonPrime(4))
