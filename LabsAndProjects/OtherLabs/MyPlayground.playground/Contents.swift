@@ -1,65 +1,71 @@
 import Foundation
 
 var userList = ["123", "456", "789"]
-
-
+var bookList = ["Animal Farm", "Ready Player One", "Ready Player Two"]
+var avilibleBooks = ["Ready Player One"]
 
 struct User {
     var userId: String
     var userName: String
-    var checkedOutBookd: [String]
+    var checkedOutBooks: [String]
 }
 
-let testUser = User(userId: "123", userName: "DC", checkedOutBookd: ["Animal Farm", "Ready PLayer Two"])
+let testUser = User(userId: "123", userName: "DC", checkedOutBooks: ["Animal Farm", "Ready PLayer Two"])
 
 protocol UsersList {
     var user: User { get set }
-    var userId: String { get set }
+//    var userId: String { get set }
     func fetchUserList() -> [String]
-    func checkUserId() -> Bool
+    func checkUserId()
 }
 
 class MakeUserId: UsersList {
-    var user = testUser
-    var userId = testUser.userId
+    var user: User
+//    var userId = user.userId
+    
     func fetchUserList() -> [String] {
-        var userList = ["123", "456", "789"]
+        var userList = user.checkedOutBooks
         return userList
     }
-    // i forgot what i was cooking with this i got too in the moment and didn't know what i was doing i just wrote code and it worked
-    func checkUserId() -> Bool {
-        var userHasId = false
-        
-        for id in fetchUserList() {
-            if id == userId {
-                userHasId = true
-            }
-        }
-        
-        return userHasId
-    }
+    
+    func checkUserId() { fatalError("User not created") }
     
     func makeUserId() {
         
     }
     
-}
-// i forgot what i was doing
-class CheckUsersCheckedOutBooks {
+    init(user: User, userId: String) {
+        self.user = user
+//        self.userId = userId
+    }
     
 }
-
-protocol FindBook {
-    func fetchBook()
+// Check to see if the user has the book
+class CheckUsersCheckedOutBooks {
+    let user: User
+    let book: String
+    
+    func checkBook() {
+        for userBook in user.checkedOutBooks {
+            if book == userBook {
+                print("Sorry you already have that book")
+            }
+        }
+    }
+    
+    init(user: User, book: String) {
+        self.user = user
+        self.book = book
+    }
 }
 
-class UserRequestedBook: FindBook {
+class UserRequestedBook: CheckUsersCheckedOutBooks {
     func fetchBook() {
         
     }
 }
 
-class CheckOutBook: FindBook {
+class CheckOutBook {
     func fetchBook() {
         
     }

@@ -25,3 +25,20 @@
     //  Output: [1, 4, 4]
 
 import Foundation
+
+func nToTheNth(_ array: [Int], n: Int) -> Int? {
+    guard n > 0 && n < array.count else { return nil }
+    var nthNum = array[n]
+    
+    for num in array {
+        if num <= 0 {
+            return nil
+        }
+    }
+    
+    return nthNum + (n * nthNum)
+}
+
+print(nToTheNth([1, 2, 3, 4], n: 2))
+print(nToTheNth([1, 2, 3], n: 3))
+print(nToTheNth([1, 2, 3 ,4 ,5 ,6 ,7], n: 5))
