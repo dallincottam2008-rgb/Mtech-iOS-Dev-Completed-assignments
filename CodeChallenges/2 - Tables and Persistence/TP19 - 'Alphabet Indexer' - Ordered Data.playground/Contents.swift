@@ -17,3 +17,27 @@
     //  Rewrite your function to not rely on using a literal array for the alphabet. (In other words, the alphabet itself should not appear in your function.)
 
 import Foundation
+
+func alphabetIndex(of string: String) -> Int? {
+    let alphabet = (UnicodeScalar("a").value...UnicodeScalar("z").value) .compactMap { UnicodeScalar($0) } .map{ String($0) }
+    var returnIndex = 0
+    
+    for letter in string.lowercased() {
+        if let letter = alphabet.firstIndex(of: String(letter)) {
+            returnIndex += letter + 1
+        } else {
+            return nil
+        }
+    }
+    return returnIndex
+    
+}
+
+print(alphabetIndex(of: "a")!)
+print(alphabetIndex(of: "z")!)
+print(alphabetIndex(of: "@"))
+print(alphabetIndex(of: "#"))
+print(alphabetIndex(of: "abkakjkjf")!)
+print(alphabetIndex(of: "Abkakjkjf")!)
+print(alphabetIndex(of: "@kjakljda"))
+
