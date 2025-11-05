@@ -13,4 +13,14 @@ struct Emoji: Codable, Identifiable {
     var name: String
     var description: String
     var usage: String
+    let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    let achiveURL = documentsDirectory.appendingPathComponent("iOS_Dev_Mtech")
+    
+    func saveEmojiFile(emojis: [String]) {
+        
+    }
+    
+    static func loadFromFile() -> [String] {
+        
+    }
 }

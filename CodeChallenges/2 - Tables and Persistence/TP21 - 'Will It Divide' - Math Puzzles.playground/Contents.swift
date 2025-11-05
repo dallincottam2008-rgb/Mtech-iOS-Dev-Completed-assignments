@@ -18,3 +18,14 @@
     //  The function should return true if the number n is divisible by *all* numbers in the 'divisors' array, and false if it is not divisible by any one of them.
 
 import Foundation
+
+func canDivide(_ n: Int, by y: Int, and x: Int) -> Bool {
+    if n % y == 0 && n % x == 0 {
+        return true
+    } else {
+        return false
+    }
+}
+
+print(canDivide(10, by: 2, and: 5))
+print(canDivide(27, by: 9, and: 2))

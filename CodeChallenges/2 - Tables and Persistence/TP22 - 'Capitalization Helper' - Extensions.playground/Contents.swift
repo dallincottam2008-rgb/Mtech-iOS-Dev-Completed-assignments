@@ -19,9 +19,17 @@
 import Foundation
 
 extension String {
-    static func capitalizeWord(_ input: String) -> String {
+    func capitalizeWord() -> String {
+        var input = self
         input.lowercased()
-        input[0].toUpperCase()
-        return input
+        var inputArray = Array(input)
+        let newLetter = String(inputArray[0]).capitalized
+        inputArray.remove(at: 0)
+        inputArray.insert(contentsOf: newLetter, at: 0)
+        return inputArray.map{ String($0) }.joined()
     }
 }
+
+var word = "hello world"
+var word2 = word.capitalizeWord()
+print(word2)

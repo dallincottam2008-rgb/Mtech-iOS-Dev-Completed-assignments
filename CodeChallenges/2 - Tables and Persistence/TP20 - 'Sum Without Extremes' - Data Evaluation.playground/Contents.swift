@@ -18,3 +18,11 @@
     //  let sum = [1,2,3,4,5].sumWithoutExtremes()
 
 import Foundation
+
+func sumOf(_ array: [Int]) -> Int {
+    guard array.count > 3 else { return 0 }
+    var returnArray = array.sorted().dropLast().dropFirst()
+    return returnArray.reduce(0, +)
+}
+
+print(sumOf([15,5,6,7,2,3,22,12,22]))
