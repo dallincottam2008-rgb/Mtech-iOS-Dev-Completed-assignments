@@ -10,14 +10,20 @@ componets.queryItems = [
 
 struct StoreItem: Codable {
     var results: Results
+    
+    enum CodingKeys: String, CodingKey {
+           case results
+       }
+    
+    enum ResultsCodingKeys: String, CodingKey {
+        case trackCensoredName
+    }
 }
 
 struct Results: Codable {
-    var trackName: String
+    var trackCensoredName: String
     
-//    enum CodingKeys: String, CodingKey {
-//        case song = "trackName"
-//    }
+//
 }
 
 extension Data {
@@ -42,7 +48,7 @@ Task {
     if let httpResponse = response as? HTTPURLResponse,
        httpResponse.statusCode == 200,
        let songInfo = try? jsonDecoder.decode(StoreItem.self, from: data) {
-        print("\nSong Name", songInfo.results.trackName)
+        print("\nSong Name", songInfo.results.trackCensoredName)
         //trying to get htis to print
     }
 }
