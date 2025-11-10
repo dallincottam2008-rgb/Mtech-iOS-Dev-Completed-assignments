@@ -64,27 +64,7 @@ struct QuestionFlowView: View {
     }
 }
 
-struct RangedQuestionSubView: View {
-    
-    
-    var body: some View {
-        VStack {
-            
-            //            switch Int(sliderVal) {
-            //            case 1:
-            ////                currentAnswer = testAnswer
-            //            case 2:
-            //            case 3:
-            //            case 4:
-            //            default:
-            //            }
-            
-            
-            
-        }
-        //            Slider(value: $sliderVal, in: 1...4, step: 1)
-    }
-}
+
 
 
 

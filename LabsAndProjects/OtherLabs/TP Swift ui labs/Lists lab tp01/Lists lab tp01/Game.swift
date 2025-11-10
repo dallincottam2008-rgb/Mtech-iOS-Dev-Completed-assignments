@@ -13,12 +13,11 @@ struct Game: Identifiable {
     let genre: String
     let name: String
     let rating: String
-    let description: String
-    
 }
 
 extension Game {
     static var games: [Game] = [
-        Game(id: "Deltarune", genre: "Turn Based RPG", name: "Deltarune", rating: "1000", description: "KILL")
+        Game(id: "Deltarune", genre: "Turn Based RPG", name: "Deltarune", rating: "1000"),
+        Game(id: "Minecraft", genre: "Sandbox", name: "Minecraft", rating: "9/10")
     ]
 }

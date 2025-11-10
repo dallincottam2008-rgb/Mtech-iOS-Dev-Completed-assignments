@@ -1,9 +1,4 @@
-//
-//  ContentView.swift
-//  Project 7 (Tech social media app)
-//
-//  Created by Dallin J Cottam on 11/5/25.
-//
+
 //## Code Design Requirements (Both Project Choices)
 //1. Code is commented thoroughly.
 //1. Code is designed using MVVM architecture.
@@ -41,18 +36,20 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct RootTabView: View {
+    @Environment(AppServices.self) private var appServices
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+        TabView {
+            PostsView(networkClient: appServices.networkClient)
+                .tabItem {
+                    Label("Posts", systemImage: "rectangle.stack.person.crop")
+                }
 
-#Preview {
-    ContentView()
+            ProfileView()
+                .tabItem {
+                    Label("Profile", systemImage: "person.crop.circle")
+                }
+        }
+    }
 }

@@ -2,29 +2,32 @@ import Foundation
 
 //var keys: [String: String] = ["blur": "2"]
 
-var componets = URLComponents(string: "https://itunes.apple.com/search")!
-componets.queryItems = [
-    "term": "the+offspring+self+esteem",
-    "media": "music"
-].map { URLQueryItem(name: $0.key, value: $0.value)}
+//var componets = URLComponents(string: "https://itunes.apple.com/search")!
+//componets.queryItems = [
+//    "term": "the+offspring+self+esteem",
+//    "media": "music"
+//].map { URLQueryItem(name: $0.key, value: $0.value)}
 
 struct StoreItem: Codable {
-    var results: Results
-    
-    enum CodingKeys: String, CodingKey {
-           case results
-       }
-    
-    enum ResultsCodingKeys: String, CodingKey {
-        case trackCensoredName
-    }
-}
-
-struct Results: Codable {
+    var results: String
     var trackCensoredName: String
     
-//
+    enum CodingKeys: String, CodingKey {
+        case results
+        case trackCensoredName
+
+       }
+    
+//    enum ResultsCodingKeys: String, CodingKey {
+//        case trackCensoredName
+//    }
 }
+
+//struct Results: Codable {
+//    var trackCensoredName: String
+//    
+////
+//}
 
 extension Data {
     func prettyPrintedJSONString() {
@@ -46,9 +49,8 @@ Task {
     
     let jsonDecoder = JSONDecoder()
     if let httpResponse = response as? HTTPURLResponse,
-       httpResponse.statusCode == 200,
-       let songInfo = try? jsonDecoder.decode(StoreItem.self, from: data) {
-        print("\nSong Name", songInfo.results.trackCensoredName)
+       httpResponse.statusCode == 200 {
+           data.prettyPrintedJSONString()
         //trying to get htis to print
     }
 }

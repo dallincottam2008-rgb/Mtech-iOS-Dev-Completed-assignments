@@ -51,19 +51,7 @@ class QuizManager {
     }
     
     func selectAnswer(answer: Answer, answerType: AnswerType) {
-        // need to actually loop through each selected item
-//        if answered {
-//            selectedAnswers.append(answerType)
-//        } else {
-//            if let remove = selectedAnswers.firstIndex(of: answerType){
-//                selectedAnswers.remove(at: remove)
-//            }
-//        }
-        guard let remove = selectedAnswers.firstIndex(of: answer) else { return }
-        for answer in selectedAnswers {
-            if !answer.selected {
-                selectedAnswers.remove(at: )
-            }
-        }
+       
+       
     }
 }

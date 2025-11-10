@@ -10,7 +10,6 @@ import SwiftUI
 @main
 struct Project_5_quiz_part_1App: App {
     
-    
     var body: some Scene {
         WindowGroup {
             TitleView()

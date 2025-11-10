@@ -39,14 +39,14 @@ struct AddRecipeSheet: View {
     @Environment(\.dismiss) var dismiss
     @Binding var recipes: [Recipe]
 
-    @State private var title = ""
+    @State private var title = "test"
     @State private var ingredients = ""
     @State private var instructions = ""
     
     var body: some View {
         Form {
             Section("Recipe Info") {
-                TextField("Title", text: $title)
+                TextField(title, text: $title)
                 TextField("Ingredients", text: $ingredients, axis: .vertical)
                 TextField("Instructions", text: $instructions, axis: .vertical)
             }

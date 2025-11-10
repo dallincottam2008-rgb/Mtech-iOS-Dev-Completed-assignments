@@ -14,15 +14,20 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List(game.games) { game in
-                NavigationLink {
-                    
-                } label: {
+                HStack{
                     Text(game.name)
+                    Text("• My rating: \(game.rating)")
+                        .font(.custom("", size: 12))
+                        .bold()
+                    Text("• Genre: \(game.genre)")
+                        .font(.custom("", size: 12))
+                        .bold()
                 }
             }
         }
     }
 }
+
 
 
 #Preview {

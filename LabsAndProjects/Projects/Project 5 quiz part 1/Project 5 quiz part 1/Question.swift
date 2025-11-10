@@ -13,6 +13,8 @@ struct Question: Identifiable, Equatable {
     var text: String
     var type: ResponseType
     var answers: [Answer]
+    
+    
 }
 
 enum ResponseType {

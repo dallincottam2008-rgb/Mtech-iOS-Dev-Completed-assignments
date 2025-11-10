@@ -17,3 +17,35 @@
     //  If more than two moves are input, the winners are the players who voted for the most popular move.
 
 import Foundation
+
+func rockPaperScissors(_ input: String) -> String {
+    let moves = ["rock", "paper", "scissors"]
+    let randomInput = moves[Int.random(in: 0...2)]
+    if input.lowercased() == randomInput {
+        return "I chose \(randomInput). Draw! Go again?"
+    } else if input.lowercased() == "rock" && randomInput == "scissors" || input.lowercased() == "paper" && randomInput == "rock" || input.lowercased() == "scissors" && randomInput == "paper" {
+        return "I chose \(randomInput). I lose."
+    } else {
+        return "I chose \(randomInput). You lose!."
+    }
+}
+
+print(rockPaperScissors("rock"))
+print(rockPaperScissors("paper"))
+print(rockPaperScissors("scissors"))
+
+//func rockPaperScissors2(_ input: [String]) -> String {
+//    let moves = ["rock", "paper", "scissors"]
+//    let randomInput = moves[Int.random(in: 0...2)]
+//    for move in input {
+//        if move.lowercased() == randomInput {
+//            return "I chose \(randomInput). Draw! Go again?"
+//        } else if move.lowercased() == "rock" && randomInput == "scissors" || move.lowercased() == "paper" && randomInput == "rock" || input.lowercased() == "scissors" && randomInput == "paper" {
+//            return "I chose \(randomInput). I lose."
+//        } else if input.lowercased() == "paper" && randomInput == "scissors" || input.lowercased() == "scissors" && randomInput == "rock" || input.lowercased() == "rock" && randomInput == "paper" {
+//            return "I chose \(randomInput). You lose!."
+//        } else {
+//            return "not a valid input"
+//        }
+//    }
+//}

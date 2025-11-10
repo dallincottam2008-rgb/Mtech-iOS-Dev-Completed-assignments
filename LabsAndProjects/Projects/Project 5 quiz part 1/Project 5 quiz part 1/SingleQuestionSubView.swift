@@ -7,27 +7,29 @@
 import SwiftUI
 
 struct SingleQuestionSubView: View {
+//    typealias Body = 
+    
     @Environment(QuizManager.self) var quizManager
 //    private var quizManager = QuizManager()
 //    @State private var selectedAnswers = QuizManager().selectedAnswers
 //    @State private var questions = QuizManager().questionList
-    @State private var testAnswer = [
-        Answer(text: "Answer5", type: .answer1),
-        Answer(text: "Answer6", type: .answer2),
-        Answer(text: "Answer7", type: .answer3),
-        Answer(text: "Answer8", type: .answer4)
-    ]
+//    @State private var testAnswer = [
+//        Answer(text: "Answer5", type: .answer1),
+//        Answer(text: "Answer6", type: .answer2),
+//        Answer(text: "Answer7", type: .answer3),
+//        Answer(text: "Answer8", type: .answer4)
+//    ]
     var body: some View {
-        VStack {
-            ForEach($testAnswer) { $answer in
-                Toggle(answer.text, isOn: $answer.selected)
-                    .modifier(ToggleCustomStyle())
-                    .onChange(of: answer.selected) {
-                        quizManager.selectAnswer(answered: answer.selected, answerType: answer.type)
-                    }
-            }
-        }
-        .padding()
+//        VStack {
+//            ForEach($testAnswer) { $answer in
+//                Toggle(answer.text, isOn: $answer.selected)
+//                    .modifier(ToggleCustomStyle())
+//                    .onChange(of: answer.selected) {
+//                        quizManager.selectAnswer(answered: answer.selected, answerType: answer.type)
+//                    }
+//            }
+//        }
+//        .padding()
     }
 }
 
