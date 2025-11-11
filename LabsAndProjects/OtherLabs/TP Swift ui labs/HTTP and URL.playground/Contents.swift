@@ -2,32 +2,29 @@ import Foundation
 
 //var keys: [String: String] = ["blur": "2"]
 
-//var componets = URLComponents(string: "https://itunes.apple.com/search")!
-//componets.queryItems = [
-//    "term": "the+offspring+self+esteem",
-//    "media": "music"
-//].map { URLQueryItem(name: $0.key, value: $0.value)}
-
-struct StoreItem: Codable {
-    var results: String
-    var trackCensoredName: String
-    
-    enum CodingKeys: String, CodingKey {
-        case results
-        case trackCensoredName
-
-       }
-    
-//    enum ResultsCodingKeys: String, CodingKey {
-//        case trackCensoredName
-//    }
+enum iTunesErrors: Error {
+    case musicNotFound
 }
 
-//struct Results: Codable {
-//    var trackCensoredName: String
-//    
-////
-//}
+struct SearchResponse: Codable {
+    let results: [StoreItem]
+}
+
+struct StoreItem: Codable {
+    var artistName: String
+    var trackName: String
+    
+    enum CodingKeys: String, CodingKey {
+        case artistName
+        case trackName
+        
+    }
+    
+//    enum AdditionalKeys: String, CodingKey {
+//
+//    }
+    
+}
 
 extension Data {
     func prettyPrintedJSONString() {
@@ -44,15 +41,36 @@ extension Data {
     }
 }
 
-Task {
-    let (data, response) = try await URLSession.shared.data(from: componets.url!)
+func fetchItems(matching query: [String: String]) async throws -> [StoreItem] {
+    var urlComponets = URLComponents(string: "https://itunes.apple.com/search")!
+    urlComponets.queryItems = query.map { URLQueryItem(name: $0.key, value: $0.value) }
+    
+    let (data, response) = try await URLSession.shared.data(from: urlComponets.url!)
+
+//    data.prettyPrintedJSONString()
+
+    guard  let httpResonse = response as? HTTPURLResponse, httpResonse.statusCode == 200 else {
+        throw iTunesErrors.musicNotFound
+    }
     
     let jsonDecoder = JSONDecoder()
-    if let httpResponse = response as? HTTPURLResponse,
-       httpResponse.statusCode == 200 {
-           data.prettyPrintedJSONString()
-        //trying to get htis to print
+    let searchResonse = try jsonDecoder.decode(SearchResponse.self, from: data)
+    return searchResonse.results
+}
+let query = [
+    "term": "the+offspring+self+esteem",
+    "media": "music"
+]
+
+Task {
+    do {
+        let storeItems = try await fetchItems(matching: query)
+        storeItems.forEach { item in
+            print("""
+                Name: \(item.trackName)
+                Artist: \(item.artistName)
+                
+                """)
+        }
     }
 }
-
-

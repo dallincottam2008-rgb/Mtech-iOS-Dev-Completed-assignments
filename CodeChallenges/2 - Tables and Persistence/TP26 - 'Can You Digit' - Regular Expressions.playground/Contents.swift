@@ -23,3 +23,28 @@
     //  3. A digit within a string: "abc7xyz" should return true.
 
 import Foundation
+
+func isDigit(_ input: String) -> Bool {
+    var returnDigit: [Int] = []
+    
+    for num in input {
+        if let digit = Int(String(num)) {
+            if digit < 10 && digit > -10 {
+                returnDigit.append(digit)
+            }
+        }
+    }
+    
+    if returnDigit.count == 1 {
+        return true
+    } else {
+        return false
+    }
+}
+
+print(isDigit("7"))
+print(isDigit("-7"))
+print(isDigit("894384"))
+print(isDigit("-732932"))
+print(isDigit("hel1lo"))
+print(isDigit("   1   "))
