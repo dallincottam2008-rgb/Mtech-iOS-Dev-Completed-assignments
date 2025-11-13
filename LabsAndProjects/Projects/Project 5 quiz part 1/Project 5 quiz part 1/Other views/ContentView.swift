@@ -14,7 +14,8 @@ struct TitleView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .center) {
-                Text("TITLE")
+                Image("Music")
+                Text("Which music app are you")
                     .bold()
                     .font(.custom("", size: 40))
                 
@@ -33,36 +34,7 @@ struct TitleView: View {
     }
 }
 
-struct QuestionFlowView: View {
-    @Environment(QuizManager.self) var quizManager
-    var question: Question
-    var body: some View {
-        NavigationStack{
-            VStack {
-                Text(question.text)
-                
-                switch question.type {
-                case .multiple:
-                    MultipleQuestionSubView()
-                case .single:
-                    SingleQuestionSubView()
-                case .ranged:
-                    SingleQuestionSubView()
-                }
-                NavigationLink("Next") {
-                    if let nextQuestion = quizManager.nextQuestion(after: question) {
-                        QuestionFlowView(question: nextQuestion)
-                    }
-//                    else {
-//                        ResultsView()
-//                    }
-                }
-                
-            }
-            .padding()
-        }
-    }
-}
+
 
 
 

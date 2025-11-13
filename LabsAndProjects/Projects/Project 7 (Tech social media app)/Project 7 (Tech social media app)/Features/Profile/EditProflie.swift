@@ -14,7 +14,7 @@ struct editUserRepositoryView: View {
         VStack {
             Text("Edit Profile")
             Form {
-                TextField(user.firstName, text: $user.firstName)
+                TextField(user.firstName, text: $user.firstName) // edits the usersz profile doesn't work but will wiht api
                 TextField(user.lastName, text: $user.lastName)
                 TextField(user.userName, text: $user.userName)
                 TextField(user.biography, text: $user.biography)
@@ -23,10 +23,15 @@ struct editUserRepositoryView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Done", action: dismiss.callAsFunction)
+                    Button("Done") {
+                        dismiss()
+                    }
                 }
             }
         }
     }
 }
 
+#Preview {
+    editUserRepositoryView()
+}

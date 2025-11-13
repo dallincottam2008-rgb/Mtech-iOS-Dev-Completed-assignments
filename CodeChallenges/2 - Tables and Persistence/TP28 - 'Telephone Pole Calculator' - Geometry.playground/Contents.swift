@@ -19,3 +19,20 @@
     //  On the opposite side of the street are another set of telephone poles, of the same number, same radius, and same distances. Create a second function that returns the distance between the first pole on one side of the road and the last pole on the other.
 
 import Foundation
+enum Errors: Error {
+    case notValidInput
+}
+func telephonePole(numOfPoles poles: Int, distance: Int, diameter: Int)throws -> Int {
+    if poles < 1 || distance < 10 || distance > 30 || diameter < 10 || diameter > 50 {
+        throw Errors.notValidInput
+    } else {
+        let distanceBetweenPoles = (distance * (poles - 1)) * 100
+        let diamtersOfPoles = (poles - 1) * diameter
+        return distanceBetweenPoles + diamtersOfPoles
+    }
+}
+do {
+    try print(telephonePole(numOfPoles: 5, distance: 25, diameter: 10))
+} catch {
+    print(error)
+}

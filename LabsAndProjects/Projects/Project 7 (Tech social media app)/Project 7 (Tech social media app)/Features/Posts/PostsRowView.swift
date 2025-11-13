@@ -9,27 +9,38 @@ import SwiftUI
 
 struct PostRowView: View {
     let post: Post
+    @State var commentsViewIsShowing = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("\(post.author.firstName) \(post.author.lastName) • @\(post.author.userName)")
-                .font(.subheadline)
+        NavigationStack {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("\(post.author.firstName) \(post.author.lastName) • @\(post.author.userName)") 
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                
+                Text(post.title)
+                    .font(.headline)
+                
+                Text(post.body)
+                    .font(.body)
+                
+                HStack(spacing: 16) {
+                    Label("\(post.likeCount)", systemImage: "hand.thumbsup")
+                    Label("\(post.commentCount)", systemImage: "text.bubble")
+                    
+                }
+                .font(.footnote)
                 .foregroundStyle(.secondary)
-
-            Text(post.title)
-                .font(.headline)
-
-            Text(post.body)
-                .font(.body)
-
-            HStack(spacing: 16) {
-                Label("\(post.likeCount)", systemImage: "hand.thumbsup")
-                Label("\(post.commentCount)", systemImage: "text.bubble")
+                .onTapGesture {
+                    commentsViewIsShowing = true // when tapped the comments show up on a sheet view
+                }
             }
-            .font(.footnote)
-            .foregroundStyle(.secondary)
+            .padding(.vertical, 8)
+            .sheet(isPresented: $commentsViewIsShowing) {
+                CommentsView(post: post)
+            }
+            
         }
-        .padding(.vertical, 8)
     }
 }
 
@@ -44,3 +55,5 @@ struct PostRowView: View {
 //    PostRowView(post: .sample)
 //}
 //#endif
+
+

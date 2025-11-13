@@ -13,7 +13,7 @@ protocol UserRepositoryProtocol {
 }
 
 struct MockUserRepository: UserRepositoryProtocol {
-    func fetchCurrentUser() -> User { // needs to throw an error
+    func fetchCurrentUser() -> User { // needs to throw an error not rn tho
         User(
             id: "u1",
             firstName: "Dallin",

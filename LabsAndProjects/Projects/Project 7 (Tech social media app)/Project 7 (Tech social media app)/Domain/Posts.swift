@@ -14,4 +14,5 @@ struct Post: Identifiable, Equatable, Sendable{
     let likeCount: Int
     let commentCount: Int
     let createdAt: Date
+    let comments: [Comment]
 }

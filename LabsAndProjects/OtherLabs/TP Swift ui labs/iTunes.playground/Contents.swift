@@ -57,6 +57,7 @@ func fetchItems(matching query: [String: String]) async throws -> [StoreItem] {
     let searchResonse = try jsonDecoder.decode(SearchResponse.self, from: data)
     return searchResonse.results
 }
+
 let query = [
     "term": "the+offspring+self+esteem",
     "media": "music"

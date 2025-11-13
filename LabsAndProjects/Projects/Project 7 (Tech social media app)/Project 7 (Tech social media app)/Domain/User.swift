@@ -15,5 +15,5 @@ struct User: Identifiable, Equatable, Sendable{ //have to add codable
     var biography: String
     var techInterests: [String]
     var profileImageURL: Image //need to change this to URL? have it as image as a place holder
-    var coverImageURL: Image
+    var coverImageURL: Image // smae with this one
 }

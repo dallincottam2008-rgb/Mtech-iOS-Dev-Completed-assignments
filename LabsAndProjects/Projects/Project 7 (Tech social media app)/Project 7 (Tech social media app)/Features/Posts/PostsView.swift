@@ -15,7 +15,7 @@ struct PostsView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack { // lists the posts out
             Group {
                 if viewModel.isLoading {
                     ProgressView("Loading posts")

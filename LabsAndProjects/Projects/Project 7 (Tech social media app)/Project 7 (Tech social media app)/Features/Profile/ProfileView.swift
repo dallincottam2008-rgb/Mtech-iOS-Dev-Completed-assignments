@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @Environment(AppServices.self) private var appServices
+    @State private var posts = PostsViewModel.self
     @State private var user =  MockUserRepository().fetchCurrentUser()
     @State private var isShowing = false
-    var body: some View {
+    @State private var postsIsShowing = false
+
+    var body: some View { // profile view
         NavigationStack {
             VStack(spacing: 16) {
                 HStack(alignment: .top) {
@@ -28,7 +32,7 @@ struct ProfileView: View {
                 Text("About me")
                 Text("\(user.biography)")
                 List {
-                    ForEach(user.techInterests, id: \.self) {interest in
+                    ForEach(user.techInterests, id: \.self) { interest in
                         Text("\(interest)")
                     }
                 }
@@ -37,15 +41,26 @@ struct ProfileView: View {
                     isShowing = true
                 }
                 
-                Button("New Post") { }
+                Button("New Post") {
+                    postsIsShowing = true
+                }
+                
             }
             .padding()
             .navigationTitle("Profile")
             .sheet(isPresented: $isShowing) {
                 editUserRepositoryView()
             }
+            .sheet(isPresented: $postsIsShowing) {
+                NewPostView(networkClient: appServices.networkClient)
+            }
         }
     }
+//    func fetchMostRecentPost() -> Post {
+//        for post in posts.posts {
+//            
+//        }
+//    }
 }
 #Preview {
     ProfileView()

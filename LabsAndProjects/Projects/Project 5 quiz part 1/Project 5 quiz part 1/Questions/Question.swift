@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Question: Identifiable, Equatable {
-    static func == (lhs: Question, rhs: Question) -> Bool { true }
+    static func == (lhs: Question, rhs: Question) -> Bool { lhs.id == rhs.id }
     var id = UUID()
     var text: String
     var type: ResponseType
