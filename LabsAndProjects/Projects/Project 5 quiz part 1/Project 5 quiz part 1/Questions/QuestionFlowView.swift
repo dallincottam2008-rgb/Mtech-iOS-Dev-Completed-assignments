@@ -25,7 +25,7 @@ struct QuestionFlowView: View {
                 if let nextQuestion = quizManager.nextQuestion(after: question) {
                     QuestionFlowView(question: nextQuestion)
                 } else {
-                    ResultsView(resultsText: "Test")
+                    ResultsView(resultsText: "How did you break the code this shouldn't apear")
                 }
             }
         }

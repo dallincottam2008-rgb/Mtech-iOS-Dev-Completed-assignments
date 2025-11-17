@@ -25,7 +25,7 @@ struct RootTabView: View {
                     Label("Posts", systemImage: "rectangle.stack.person.crop")
                 }
 
-            ProfileView()
+            ProfileView(networkClient: appServices.networkClient, mostRecentPost: nil )
                 .tabItem {
                     Label("Profile", systemImage: "person.crop.circle")
                 }

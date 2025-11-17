@@ -19,7 +19,7 @@ protocol UsersList {
     func checkUserId()
 }
 
-class MakeUserId: UsersList {
+class UserList: UsersList {
     var user: User
 //    var userId = user.userId
     
@@ -41,7 +41,7 @@ class MakeUserId: UsersList {
     
 }
 // Check to see if the user has the book
-class CheckUsersCheckedOutBooks {
+class UsersCheckedOutBooks {
     let user: User
     let book: String
     

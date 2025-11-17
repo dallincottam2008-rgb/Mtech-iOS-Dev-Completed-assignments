@@ -18,9 +18,9 @@ class QuizManager {
             text: "Which one is the best",
             type: .multiple,
             answers: [
-                Answer(text: "Podcast", type: .answer1),
+                Answer(text: "Podcasts", type: .answer1),
                 Answer(text: "Music", type: .answer2),
-                Answer(text: "Books", type: .answer3),
+                Answer(text: "eBooks", type: .answer3),
                 Answer(text: "All of them", type: .answer4)
             ]
         ),
@@ -28,14 +28,14 @@ class QuizManager {
             text: "Which color do you like best",
             type: .single,
             answers: [
-                Answer(text: "Light blue", type: .answer1),
+                Answer(text: "Youtube", type: .answer1),
                 Answer(text: "Pink", type: .answer2),
                 Answer(text: "Blue", type: .answer3),
                 Answer(text: "Green", type: .answer4)
             ]
         ),
         Question(
-            text: "how do like random music",
+            text: "how much do like random music",
             type: .ranged,
             answers: [
                 Answer(text: "not at all", type: .answer2),
@@ -45,10 +45,10 @@ class QuizManager {
             ]
         ),
         Question(
-            text: "Which type of tehc do you like",
+            text: "Which type phone do you like most",
             type: .single,
             answers: [
-                Answer(text: "whatever I can find", type: .answer1),
+                Answer(text: "Google Pixel", type: .answer1),
                 Answer(text: "Apple", type: .answer2),
                 Answer(text: "Andriod", type: .answer3),
                 Answer(text: "All of it", type: .answer4)
@@ -117,7 +117,7 @@ class QuizManager {
         
         if answer1 > answer2 && answer1 > answer3 && answer1 > answer4 {
             finalAnswer = .answer1
-            return "Pandora"
+            return "Youtube music"
         } else if answer2 > answer1 && answer2 > answer3 && answer2 > answer4 {
             finalAnswer = .answer2
             return "iTunes"
@@ -129,7 +129,7 @@ class QuizManager {
             return "Spotify"
         } else {
             finalAnswer = .answer1
-            return "A secret 5th option"
+            return "Idk just pirate it or smth you are too all over the place"
         }
     }
     

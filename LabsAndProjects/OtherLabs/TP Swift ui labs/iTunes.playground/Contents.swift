@@ -20,10 +20,6 @@ struct StoreItem: Codable {
         
     }
     
-//    enum AdditionalKeys: String, CodingKey {
-//
-//    }
-    
 }
 
 extension Data {
@@ -47,7 +43,6 @@ func fetchItems(matching query: [String: String]) async throws -> [StoreItem] {
     
     let (data, response) = try await URLSession.shared.data(from: urlComponets.url!)
 
-//    data.prettyPrintedJSONString()
 
     guard  let httpResonse = response as? HTTPURLResponse, httpResonse.statusCode == 200 else {
         throw iTunesErrors.musicNotFound

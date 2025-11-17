@@ -15,3 +15,33 @@
     //  Suzuki wants to know which days of the week he climbed more stairs on average. Assuming the input array's contents are organized as [sunday, monday, tuesday, wednesday, thursday, friday, saturday], find the average number of stairs climbed for each day, then output a string of the weekdays, presenting them in order highest to lowest average (i.e. "tuesday, friday, wednesday, thursday, monday, saturday, sunday")
 
 import Foundation
+
+
+func howManySteps(from input: [[Int]]) -> Int {
+    var steps: [Int] = []
+    
+    for day in input {
+        steps.append(day.reduce(0, +))
+    }
+    return (steps.reduce(0, +)) * 20
+}
+
+var test = [[1,2,3,1,3], [3,1,1,2,3], [1,3,1,2,3]]
+
+print(howManySteps(from: test))
+
+//func whichDayHasMost(steps input: [[Int]]) -> String {
+//    var days = ["Sunday": 0, "Monday": 0, "Tuesday": 0, "Wednesday": 0, "Thursday": 0,"Friday": 0, "Saturday": 0]
+//    var currentDay = ""
+//    
+//    for day in input {
+//        for day2 in days {
+//            if day2.value == 0 && currentDay == "" {
+//                currentDay = day2.key
+//            } else {
+//                continue
+//            }
+//        }
+//        days.
+//    }
+//}

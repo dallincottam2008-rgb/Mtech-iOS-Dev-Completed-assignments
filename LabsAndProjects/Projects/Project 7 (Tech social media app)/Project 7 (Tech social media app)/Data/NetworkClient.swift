@@ -14,6 +14,7 @@ protocol NetworkClientProtocol: Sendable {
 }
 
 actor MockNetworkClient: NetworkClientProtocol {
+
     func fetchCurrentUser() async throws -> User {
         try await Task.sleep(nanoseconds: 80_000_000)
         return await Self.sampleAda
@@ -61,12 +62,12 @@ actor MockNetworkClient: NetworkClientProtocol {
     )
     
     private static let sampleAlan = User(
-        id: "u_alan",
-        firstName: "Alan",
-        lastName: "Turing",
+        id: "u1",
+        firstName: "Dallin",
+        lastName: "Cottam",
         userName: "DCottam",
-        biography: "Machines and thought",
-        techInterests: ["Math","Security"],
+        biography: "Just some guy",
+        techInterests: ["Swift", "Game Development", "Hardware"],
         profileImageURL: Image("tempPic"),
         coverImageURL: Image("tempPic")
     )

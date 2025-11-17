@@ -21,13 +21,28 @@ enum ResponseType {
     case single, multiple, ranged
 }
 
-struct Answer: Identifiable {
+struct Answer: Identifiable, Hashable {
     var id = UUID()
     var text: String
     var type: AnswerType
     var selected: Bool = false
 }
 
-enum AnswerType {
+enum AnswerType: Identifiable {
     case answer1, answer2, answer3, answer4
+    
+    var id: String {
+        switch self {
+    
+        case .answer1:
+            return "Answer1"
+        case .answer2:
+            return "Answer2"
+        case .answer3:
+            return "Answer3"
+        case .answer4:
+            return "Answer4"
+
+        }
+    }
 }

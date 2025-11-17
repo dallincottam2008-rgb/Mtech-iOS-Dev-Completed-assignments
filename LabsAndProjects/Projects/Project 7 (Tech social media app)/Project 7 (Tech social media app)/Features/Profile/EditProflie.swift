@@ -11,20 +11,22 @@ struct editUserRepositoryView: View {
     @State var user = MockUserRepository().fetchCurrentUser()
     
     var body: some View {
-        VStack {
-            Text("Edit Profile")
-            Form {
-                TextField(user.firstName, text: $user.firstName) // edits the usersz profile doesn't work but will wiht api
-                TextField(user.lastName, text: $user.lastName)
-                TextField(user.userName, text: $user.userName)
-                TextField(user.biography, text: $user.biography)
-//                TextField(user.techInterests, text: $user.lastName)
-
-            }
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Done") {
-                        dismiss()
+        NavigationStack {
+            VStack {
+                Text("Edit Profile")
+                Form {
+                    TextField(user.firstName, text: $user.firstName) // edits the usersz profile doesn't work but will wiht api
+                    TextField(user.lastName, text: $user.lastName)
+                    TextField(user.userName, text: $user.userName)
+                    TextField(user.biography, text: $user.biography)
+                    //                TextField(user.techInterests, text: $user.lastName)
+                    
+                }
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Done") {
+                            dismiss()
+                        }
                     }
                 }
             }

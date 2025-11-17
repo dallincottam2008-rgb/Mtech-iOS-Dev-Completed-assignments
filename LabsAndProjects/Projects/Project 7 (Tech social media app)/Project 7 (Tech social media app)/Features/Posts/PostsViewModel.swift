@@ -10,12 +10,12 @@ import Combine
 
 @Observable
 final class PostsViewModel {
-    private(set) var posts: [Post] = []
+    var posts: [Post] = []
     private(set) var isLoading: Bool = false
     private(set) var errorMessage: String?
     var title = ""
     var postBody = ""
-    
+
 
     private let networkClient: NetworkClientProtocol
 

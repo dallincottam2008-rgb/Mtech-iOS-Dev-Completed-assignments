@@ -15,17 +15,19 @@ struct NewPostView: View {
     }
     
     var body: some View {
-        VStack {
-            Text("Edit Profile")
-            Form {
-                TextField("Title", text: $viewModel.title) // takes in the stuff for the new post
-                TextField("Body", text: $viewModel.postBody)
-                
-
-            }
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Submit", action: dismiss.callAsFunction)
+        NavigationStack{
+            VStack {
+                Text("Edit Profile")
+                Form {
+                    TextField("Title", text: $viewModel.title) // takes in the stuff for the new post
+                    TextField("Body", text: $viewModel.postBody)
+                    
+                    
+                }
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Submit", action: dismiss.callAsFunction) // submits the new post, neeed to save
+                    }
                 }
             }
         }

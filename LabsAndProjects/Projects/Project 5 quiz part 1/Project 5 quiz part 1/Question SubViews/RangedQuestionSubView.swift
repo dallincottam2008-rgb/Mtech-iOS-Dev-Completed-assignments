@@ -33,7 +33,7 @@ struct RangedQuestionSubView: View {
                         quizManager.sliderValue(sliderVal)
                     }
                 }
-            Text("\(sliderVal)")
+            Text("\(sliderText)")
         }
     }
 }

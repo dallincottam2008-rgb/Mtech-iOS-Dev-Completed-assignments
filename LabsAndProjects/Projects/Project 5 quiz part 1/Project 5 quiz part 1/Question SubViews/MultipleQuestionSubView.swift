@@ -8,22 +8,21 @@ import SwiftUI
 
 struct MultipleQuestionSubView: View {
     @Environment(QuizManager.self) var quizManager
-    @State var answer: AnswerType = .answer1
-    @State var answerText: String = "hhhhh"
+    @State var answer: Answer = Answer(text: "Test", type: .answer1)
+    @State var answerText: String = ""
     let question: Question
 
     var body: some View {
         VStack {
+            
             Picker(answerText, selection: $answer)  {
-                ForEach(question.answers, id: \.self.text) { answer in
+                ForEach(question.answers) { answer in
                     Text(answer.text)
+                        .tag(answer)
                 }
             }
-            Text("\(answerText)")
-//            need to add a text the shows your current answer selection
-                
             .onChange(of: answer) {
-                switch answer {
+                switch answer.type {
                 case .answer1:
                     quizManager.selectAnswer(answer: question.answers[0])
                     answerText = question.answers[0].text
