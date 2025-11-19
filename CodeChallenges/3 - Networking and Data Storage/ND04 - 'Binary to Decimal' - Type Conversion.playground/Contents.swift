@@ -16,3 +16,17 @@
     //  Add your functions as extensions of String and Int, respectively, so they can be called directly on any String or Int. You will need to also add input validation so you can be certain that a String is in binary format when the user tries to convert it; return nil if the input is invalid.
 
 import Foundation
+
+enum error: Error {
+    case invalidInput
+}
+
+func binaryToBaseTen(in input: String) throws -> Int {
+    if let baseTen = Int(input, radix: 2) {
+        return baseTen
+    } else {
+        throw error.invalidInput
+    }
+}
+
+print(binaryToBaseTen(in: "10010001"))
