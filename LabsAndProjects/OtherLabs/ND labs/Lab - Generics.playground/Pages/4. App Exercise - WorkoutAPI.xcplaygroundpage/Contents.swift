@@ -52,18 +52,43 @@ class WorkoutAPIService {
     }
 }
 var test1 = GetUserRequest(username: "DCottam")
-
-try await WorkoutAPIService().performRequest(test1)
-
+let apiService = WorkoutAPIService()
+// user came from the protocols associated type response which was then given to GetUserReponse with type User so it will be a User
+Task {
+    do {
+        let user = try await apiService.performRequest(test1)
+    }
+}
 //:  Create another struct, `GetRecentWorkoutRequest` that conforms to APIRequest. The url path should be "/workout/getLast/", with no query items needed. The response type should be `Workout`, which you will need to create as a struct as well; for simplicity's sake you can leave the struct empty with no parameters, but it will need to conform to Codable..
+struct Workout: Codable { }
 
 struct GetReceentWorkoutResponse: APIRequest {
+    typealias Response = Workout
+    var urlRequest: URLRequest
     
+    init(workout: String) {
+        var urlComponents = URLComponents()
+        urlComponents.path = "/workout/getLast/"
+        
+        urlRequest = URLRequest(url: urlComponents.url!)
+    }
+    
+    func decodeResponse(data: Data) throws -> Response {
+        let jsonDecoder = JSONDecoder()
+        return try jsonDecoder.decode(Workout.self, from: data)
+    }
+
 }
 
 //:  Try calling WorkoutAPIService.performRequest(_:) again, this time with your new GetRecentWorkoutRequest. In a comment, answer: What type will the function return this time, and where was that type derived from?
-
-
+let test2 = GetReceentWorkoutResponse(workout: "Running")
+Task {
+    do {
+        let workout = try await apiService.performRequest(test2)
+    }
+}
+// workout came from the protocols associated type response which was then given to GetRecentWorkoutResponse with type Workout so it will be a Workout
+// same as user from before jsut different type
 
 
 /*:

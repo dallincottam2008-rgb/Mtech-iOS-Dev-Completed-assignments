@@ -18,3 +18,29 @@
     //  Additionally, create a second function that reverses the resulting string from the first function (e.g. "SSttrriinngg" becomes "ggnniirrttSS").
 
 import Foundation
+
+func longString(from input: String, and int: Int?) -> String {
+    var returnString = ""
+    
+    for letter in input {
+        if int != nil {
+            if let int = int {
+                for _ in 1...int {
+                    returnString.append(letter)
+                }
+            }
+        } else {
+            returnString.append(letter)
+            returnString.append(letter)
+        }
+    }
+    return returnString
+}
+
+print(reverseLongString(from: longString(from: "String", and: nil)) )
+
+func reverseLongString(from input: String) -> String {
+    String(input.reversed())
+}
+
+
