@@ -7,7 +7,7 @@
 import SwiftUI
 
 @Observable
-class DogAPIController {
+class DogAPIController: DogAPIControllerProtocol {
     var currentDog = ""
     func fetchDog() async throws -> DogStoreItems {
         let urlComponets = URLComponents(string: "https://dog.ceo/api/breeds/image/random")!
@@ -27,7 +27,7 @@ class DogAPIController {
 }
 
 protocol DogAPIControllerProtocol {
-    func fetchDog() -> DogStoreItems
+    func fetchDog() async throws -> DogStoreItems
 }
 
 enum DogErrors: Error {

@@ -14,25 +14,46 @@ struct DogView: View {
     
     var body: some View {
         VStack {
-            
-            AsyncImage(url: URL(string: dogImage)) { image in
-                image
-                    .image?.resizable()
-                    .scaledToFit()
+            AsyncImage(url: URL(string: dogImage)) { phase in
+                if let dogImage = phase.image {
+                        dogImage.resizable()
+                    } else if phase.error != nil {
+                        Image(systemName: "exclamationmark.circle.fill")
+                    } else {
+                        Text("Click new dog to start") // need to chage to aprear on start
+                    }
             }
             
             TextField("Name", text: $dogName)
             
             Button("New Dog") {
-                dogViewModel.dogs.append(DogCellView(dogImage: dogImage, dogName: dogName))
-                Task {
-                    do {
-                        dogImage = try await dogAPIController.fetchDog().dogImage
+                if dogImage.isEmpty {
+                    fetchDog()
+                } else {
+                    dogViewModel.dogs.append(DogCellView(dogImage: dogImage, dogName: dogName))
+                    fetchDog()
+                }
+            }
+            List {
+                ForEach(dogViewModel.dogs) { dog in
+                    AsyncImage(url: URL(string: dog.dogImage)) { image in
+                        HStack {
+                            image
+                                .image?.resizable()
+                                .scaledToFit()
+                                .frame(height: 100)
+                        }
+                        Text(dog.dogName)
                     }
                 }
             }
-            DogListView()
         }
-        
+    }
+    func fetchDog() {
+        Task {
+            do {
+                dogImage = try await dogAPIController.fetchDog().dogImage
+            }
+        }
     }
 }

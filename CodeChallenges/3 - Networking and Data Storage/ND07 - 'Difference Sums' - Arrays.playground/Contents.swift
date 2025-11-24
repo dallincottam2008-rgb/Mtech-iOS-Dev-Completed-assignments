@@ -19,3 +19,31 @@
     //  Calculate and return the average difference as well.
 
 import Foundation
+
+func differenceSum(From input: [Int]) -> Int {
+    var returnVal: [Int] = []
+    var addVal = 0
+    var currentVal = 0
+    var isFirst = true
+    
+    
+    for num in input {
+        if isFirst {
+            isFirst = false
+            currentVal = num
+        } else {
+            addVal = (currentVal - num)
+            if addVal < 0 {
+                addVal *= -1
+                returnVal.append(addVal)
+                addVal = 0
+            } else {
+                returnVal.append(addVal)
+                addVal = 0
+            }
+        }
+    }
+    return returnVal.reduce(0, +)
+}
+
+print(differenceSum(From: [2,1,10]))
