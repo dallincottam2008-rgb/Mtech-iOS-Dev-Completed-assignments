@@ -10,5 +10,4 @@ import SwiftUI
 class DogViewModel {
     var apiController = DogAPIController()
     var dogs: [DogCellView] = []
-    
 }

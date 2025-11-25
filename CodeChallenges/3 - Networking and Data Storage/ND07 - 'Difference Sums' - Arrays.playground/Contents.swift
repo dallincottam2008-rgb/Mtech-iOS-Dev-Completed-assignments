@@ -26,7 +26,6 @@ func differenceSum(From input: [Int]) -> Int {
     var currentVal = 0
     var isFirst = true
     
-    
     for num in input {
         if isFirst {
             isFirst = false

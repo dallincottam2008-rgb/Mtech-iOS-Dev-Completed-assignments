@@ -8,13 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var tagItem = 0
+    @State var dogViewModel = DogAPIController()
     
     var body: some View {
-        VStack {
-           DogView()
+        TabView(selection: $tagItem) {
+            DogView()
+                .tabItem{
+                    Label("Dogs", systemImage: "dog.fill")
+                }
+                .tag(0)
+                .onAppear {
+                    Task {
+                        do {
+                           try await dogViewModel.fetchDog()
+                        }
+                    }
+                }
+            RepView()
+                .tabItem {
+                    Label("Representatives", systemImage: "star.fill")
+                }
+                .tag(1)
+            
         }
-        .padding()
-       
     }
 }
 

@@ -20,10 +20,10 @@ struct Representative: Codable, Hashable {
     var name: String
     var party: String
     var state: String
-    var website: String
+//    var website: String
     
     enum CodingKeys: String, CodingKey {
         case name, party, state
-        case website = "link"
+//        case website = "link"
     }
 }

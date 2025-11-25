@@ -8,10 +8,13 @@ import SwiftUI
 
 @Observable
 class RepAPIController: RepAPIControllerProtocol {
+    var currentShowedReps: [Representative] = []
     
     func fetchItems(zip: Int) async throws -> [Representative] {
+        print("fetch items")
+        
         var urlComponets = URLComponents(string: "http://whoismyrepresentative.com/getall_mems.php")!
-        var query = [
+        let query = [
             "zip": "\(zip)",
             "output": "json"
         ]
@@ -25,8 +28,9 @@ class RepAPIController: RepAPIControllerProtocol {
             throw RepErrors.not200Code
         }
         
-        let jsonDecoder = JSONDecoder()
+        let jsonDecoder = JSONDecoder() 
         let searchResonse = try jsonDecoder.decode(RepStoreItems.self, from: data)
+        currentShowedReps = searchResonse.results
         return searchResonse.results
     }
 }
