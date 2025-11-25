@@ -20,7 +20,7 @@ struct DogView: View {
                     } else if phase.error != nil {
                         Image(systemName: "exclamationmark.circle.fill")
                     } else {
-                        dogImage = dogAPIController.currentDog
+//                        dogImage = dogAPIController.currentDog
                     }
             }
             
