@@ -19,11 +19,7 @@ struct ContentView: View {
                 }
                 .tag(0)
                 .onAppear {
-                    Task {
-                        do {
-                           try await dogViewModel.fetchDog()
-                        }
-                    }
+                    
                 }
             RepView()
                 .tabItem {

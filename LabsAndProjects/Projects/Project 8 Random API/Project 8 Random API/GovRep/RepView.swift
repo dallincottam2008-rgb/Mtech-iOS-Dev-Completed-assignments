@@ -45,6 +45,7 @@ struct RepView: View {
                 Form {
                     ForEach(currentRep, id: \.self) { rep in
                         Text(rep.name)
+                        Text(rep.party)
                     }
                 }
             } else {

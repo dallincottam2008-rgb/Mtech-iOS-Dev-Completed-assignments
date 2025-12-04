@@ -15,3 +15,16 @@
     //  Output: "Please turn to page 71."
 
 import Foundation
+
+func removeNumbers(from input: String) -> String {
+    var returnString = ""
+    
+    for charater in input {
+        if let charater = Int(String(charater)) { } else {
+            returnString.append(charater)
+        }
+    }
+    return returnString
+}
+
+print(removeNumbers(from: "Ala3s, poo4r Yoric888k! I kn3ew h41im, H0or4at1i0o."))

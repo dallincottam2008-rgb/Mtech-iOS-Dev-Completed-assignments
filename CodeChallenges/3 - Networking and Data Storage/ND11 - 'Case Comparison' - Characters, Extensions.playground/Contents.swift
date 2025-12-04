@@ -24,3 +24,26 @@
     //  Add another method that will instead return the input character in the same case as self.
 
 import Foundation
+
+extension Character {
+    func sameCaseAs(_ input: Character) -> Int {
+        var inputCheck = 0
+        var characterCheck = 0
+        inputCheck = input.lowercased() == String(input) ? 1 : 0
+        characterCheck = self.lowercased() == String(self) ? 1 : 0
+    
+        if !input.isLetter || !self.isLetter {
+            return -1
+        } else if inputCheck == characterCheck {
+            return 1
+        } else {
+            return 0
+        }
+    }
+}
+
+print(Character("C").sameCaseAs(Character("d")))
+print(Character("c").sameCaseAs(Character("d")))
+print(Character("5").sameCaseAs(Character("d")))
+print(Character("c").sameCaseAs(Character("D")))
+print(Character("c").sameCaseAs(Character("5")))

@@ -14,15 +14,18 @@ struct DogView: View {
     
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: dogImage)) { phase in
-                if let dogImage = phase.image {
-                        dogImage.resizable()
-                    } else if phase.error != nil {
-                        Image(systemName: "exclamationmark.circle.fill")
-                    } else {
-//                        dogImage = dogAPIController.currentDog
-                    }
-            }
+            
+            AsyncImage(url: URL(string: dogImage))
+            
+//            { phase in
+//                if let dogImage = phase.image {
+//                        dogImage.resizable()
+//                    } else if phase.error != nil {
+//                        Image(systemName: "exclamationmark.circle.fill")
+//                    } else {
+//                        
+//                    }
+//            }
             
             TextField("Name", text: $dogName)
             
