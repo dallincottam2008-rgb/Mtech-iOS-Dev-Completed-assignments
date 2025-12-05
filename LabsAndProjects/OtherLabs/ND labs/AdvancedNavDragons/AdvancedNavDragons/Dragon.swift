@@ -6,19 +6,19 @@
 //
 import SwiftUI
 
-struct Dragon: Identifiable {
+struct Dragon: Identifiable, Hashable {
     var id = UUID()
     var name: String
 //    var pic: Image
     var powers: [Power]
-//    var species: String
-//    var lore: String
-//    var rating: String
-//    var health: Int
-//    var other: String
+    var species: String
+    var lore: String
+    var rating: String
+    var health: Int
+    var other: String
 }
 
-struct Power: Identifiable {
+struct Power: Identifiable, Hashable {
     var id = UUID()
     var name: String
     var description: String

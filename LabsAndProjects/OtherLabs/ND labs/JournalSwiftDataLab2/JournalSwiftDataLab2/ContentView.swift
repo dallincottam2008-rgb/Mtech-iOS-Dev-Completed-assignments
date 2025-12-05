@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Foundation
 
 struct ContentView: View {
     
@@ -29,14 +30,10 @@ struct ContentView: View {
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
-                        
                     }
                     .padding(.vertical, 8)
-                    .onDelete{ offsets in
-                        deleteItems(from: items, at: offsets)
-                    }
+//                    .on
                 }
-                
             }
             .navigationTitle("Journal")
             .toolbar {

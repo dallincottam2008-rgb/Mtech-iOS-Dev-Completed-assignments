@@ -8,10 +8,11 @@ import SwiftUI
 
 @Observable
 class DragonsViewModel {
-    var dragons: [Dragon]
-    
-    init(dragons: [Dragon]) {
-        self.dragons = dragons
-    }
+    var dragons: [Dragon] = [
+        Dragon(name: "Test", powers: [Power(name: "Test", description: "Nah", damage: "90000", accuracy: 3.2)], species: "Bronze Dragon", lore: "IDK", rating: "10/10", health: 212, other: "")]
+    var detailViewColor: Color? = nil
+    var powerViewColor: Color? = nil
+    var dragonListViewColor: Color? = nil
+    var settingViewColor: Color = .clear
 }
 

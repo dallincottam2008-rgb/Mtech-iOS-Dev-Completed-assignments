@@ -7,9 +7,21 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @State var viewModel = DragonsViewModel()
     
     var body: some View {
-        
+        NavigationStack {
+            VStack {
+                ColorPicker("IDK", selection: $viewModel.settingViewColor)
+                Rectangle()
+                    .frame(height: 100)
+//                Text("\(viewModel.settingViewColor)")
+            }
+            .background(Color(viewModel.settingViewColor))
+        }
     }
 }
 
+#Preview {
+    SettingsView()
+}

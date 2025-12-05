@@ -24,3 +24,11 @@ struct Point {
     var x: Int
     var y: Int
 }
+
+func pointRelection(P: Point, Q: Point) -> Point {
+    Point(x: (Q.x - P.x) + Q.x, y: (Q.y - P.y) + Q.y)
+}
+
+print(pointRelection(P: Point(x: 0, y: 0), Q: Point(x: 1, y: 1)))
+print(pointRelection(P: Point(x: 2, y: 6), Q: Point(x: -2, y: -6)))
+print(pointRelection(P: Point(x: 0, y: 0), Q: Point(x: -1, y: -1)))
