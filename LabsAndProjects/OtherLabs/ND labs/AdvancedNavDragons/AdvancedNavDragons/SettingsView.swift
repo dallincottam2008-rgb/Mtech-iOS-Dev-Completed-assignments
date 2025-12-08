@@ -7,18 +7,21 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State var viewModel = DragonsViewModel()
+    @Environment(DragonsRouter.self) var router
+    @State var viewModel = DragonsViewModel(settingViewColor: .white)
+    
     
     var body: some View {
-        NavigationStack {
+        ZStack {
+            viewModel.settingViewColor.ignoresSafeArea()
             VStack {
-                ColorPicker("IDK", selection: $viewModel.settingViewColor)
-                Rectangle()
-                    .frame(height: 100)
-//                Text("\(viewModel.settingViewColor)")
+                ColorPicker("Setting backgroundColor", selection: $viewModel.settingViewColor)
+                    .font(.custom("", size: 30))
+                    .bold()
             }
-            .background(Color(viewModel.settingViewColor))
+            .padding()
         }
+        
     }
 }
 

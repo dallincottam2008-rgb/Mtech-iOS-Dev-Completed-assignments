@@ -7,17 +7,28 @@
 import SwiftUI
 
 struct DragonsListView: View {
-    @State var dragonViewModel = DragonsViewModel()
+    @Environment(DragonsRouter.self) var router
+    @State var dragonViewModel = DragonsViewModel(settingViewColor: .white)
     
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(dragonViewModel.dragons) { dragon in
-                    Text("\(dragon.name)")
+        dragonViewModel.settingViewColor.ignoresSafeArea()
+            VStack {
+                List {
+                    ForEach(dragonViewModel.dragons) { dragon in
+                        Text("\(dragon.name)")
+                    }
+                }
+                .navigationTitle("Dragons")
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        router.navigateTo(route: .settings)
+                    }) {
+                        Image(systemName: "gearshape")
+                    }
                 }
             }
-            .navigationTitle("Dragons")
-        }
     }
 }
 

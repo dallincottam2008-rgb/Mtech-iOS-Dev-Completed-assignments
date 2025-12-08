@@ -18,3 +18,25 @@
     //  Create another function, once again taking a Date as a parameter and comparing it to the current Date. This time, output whether it is within the same hour of the day as the given Date (i.e., the Date parameter is at 9:45 and it is currently 9:15, return true as it is 9:00)
 
 import Foundation
+
+func isItToday(_ input: Date) -> Bool {
+    var date = Date()
+    var today = Calendar.current.dateComponents([.day, .month, .year], from: date)
+    var userDate = Calendar.current.dateComponents([.day, .month, .year], from: input)
+    
+    if today.day == userDate.day && today.month == userDate.month && today.year == userDate.year {
+        return true
+    } else {
+        return false
+    }
+}
+
+
+let formatter = DateFormatter()
+formatter.dateFormat = "yyyy/MM/dd HH:mm"
+var userDate = formatter.date(from: "2025/12/05 22:31")
+
+var date = Date()
+
+//print(isItToday(userDate))
+print(isItToday(date))
