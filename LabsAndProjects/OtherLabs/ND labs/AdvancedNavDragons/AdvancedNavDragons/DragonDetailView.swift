@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct DragonDetailView: View {
-    @State var viewModel = DragonsViewModel(settingViewColor: .white)
+    @State var viewModel = DragonsViewModel.shared
     @State var dragon: Dragon = Dragon(name: "Test", powers: [Power(name: "Test", description: "Nah", damage: "90000", accuracy: 3.2)], species: "Bronze Dragon", lore: "IDK", rating: "10/10", health: 212, other: "")
     
     var body: some View {

@@ -17,3 +17,9 @@
 import Foundation
 
 let geese = ["African", "Roman Tufted", "Toulouse", "Pilgrim", "Steinbacher"]
+
+func removeGeese(from input: [String]) -> [String] {
+    input.filter { !geese.contains($0) }
+}
+
+print(removeGeese(from: ["Mallard", "Hook Bill", "African", "Crested", "Pilgrim", "Toulouse", "Blue Swedish"]))
