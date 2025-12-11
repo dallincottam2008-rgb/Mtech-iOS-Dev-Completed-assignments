@@ -15,7 +15,7 @@ struct SettingsView: View {
         ZStack {
             viewModel.settingViewColor.ignoresSafeArea()
             VStack {
-                ColorPicker("Setting backgroundColor", selection: $color)
+                ColorPicker("BackGround Color", selection: $color)
                     .font(.custom("", size: 30))
                     .bold()
 
@@ -23,7 +23,6 @@ struct SettingsView: View {
             .padding()
         }
         .onChange(of: color) { _, color in
-            print("Settings View color changed")
             viewModel.settingViewColor = color
         }
     }

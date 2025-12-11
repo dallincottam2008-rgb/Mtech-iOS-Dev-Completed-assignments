@@ -9,7 +9,7 @@ import SwiftUI
 struct Dragon: Identifiable, Hashable {
     var id = UUID()
     var name: String
-//    var pic: Image
+    var pic: String // just using the name of the image in the assets i dont wann make image confrom to hashable
     var powers: [Power]
     var species: String
     var lore: String
@@ -25,3 +25,5 @@ struct Power: Identifiable, Hashable {
     var damage: String
     var accuracy: Double
 }
+
+

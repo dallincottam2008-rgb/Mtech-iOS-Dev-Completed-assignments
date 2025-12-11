@@ -18,3 +18,17 @@
     //  Input: "...This is a good example!!!", Output: "This is a good example"
 
 import Foundation
+
+func removePunctuation(from input: String) -> String {
+    var returnString = input
+    
+    if returnString.last?.isPunctuation == true {
+        let lastChar = returnString.removeLast()
+        // we don't need the lastChar
+    }
+    
+    return returnString
+}
+
+print(removePunctuation(from: "Greetings, friends!!"))
+print(removePunctuation(from: "Greetings, friends"))

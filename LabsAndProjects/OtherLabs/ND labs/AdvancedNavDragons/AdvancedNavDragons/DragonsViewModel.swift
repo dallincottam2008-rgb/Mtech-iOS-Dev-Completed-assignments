@@ -12,7 +12,7 @@ class DragonsViewModel {
     static let shared = DragonsViewModel()
     
     var dragons: [Dragon] = [
-        Dragon(name: "Test", powers: [Power(name: "Test", description: "Nah", damage: "90000", accuracy: 3.2)], species: "Bronze Dragon", lore: "IDK", rating: "10/10", health: 212, other: "")]
+        Dragon(name: "Runara", pic: "EarthDragon", powers: [Power(name: "Bite", description: "Bite the target", damage: "18", accuracy: 0.70), Power(name: "Change Shape", description: "Transfroms into a human", damage: "0", accuracy: 1)], species: "Bronze Dragon", lore: "IDK", rating: "10/10", health: 212, other: "")]
     var settingViewColor: Color = .white
 }
 

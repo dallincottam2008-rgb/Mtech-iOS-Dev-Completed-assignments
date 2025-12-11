@@ -8,27 +8,30 @@ import SwiftUI
 
 struct PowersListView: View {
     @State var viewModel = DragonsViewModel.shared
-    @State var dragon: Dragon = Dragon(name: "Test", powers: [Power(name: "Test", description: "Nah", damage: "90000", accuracy: 3.2)], species: "Bronze Dragon", lore: "IDK", rating: "10/10", health: 212, other: "")
-   
+    @State var dragon: Dragon
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                
-                List {
-                    ForEach(dragon.powers) { power in
-                        Text("Power: \(power.name)")
-                        Text("Damage: \(power.damage)")
-                        Text("Description: \(power.description)")
-                        Text("Accuracy: \(power.accuracy)%")
+        ZStack {
+            viewModel.settingViewColor.ignoresSafeArea()
+            List {
+                ForEach(dragon.powers) { power in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(power.name)
+                            Text(power.description)
+                        }
+                        VStack(alignment: .trailing) {
+                            Text("DMG: \(power.damage)")
+                            Text("Accuracy: \(power.accuracy, format: .percent)")
+                        }
                     }
-                    .navigationTitle("\(dragon.name)'s Powers")
+                    .listRowBackground(viewModel.settingViewColor.mix(with: .white, by: 0.1))
                 }
             }
+            .scrollContentBackground((viewModel.settingViewColor == Color.white) ? .visible : .hidden)
+            .background(viewModel.settingViewColor)
+            .navigationTitle("\(dragon.name)'s Powers")
         }
     }
 }
 
-#Preview {
-    PowersListView(dragon: Dragon(name: "Test", powers: [Power(name: "Test", description: "Nah", damage: "90000", accuracy: 3.2)], species: "Bronze Dragon", lore: "IDK", rating: "10/10", health: 212, other: ""))
-}
