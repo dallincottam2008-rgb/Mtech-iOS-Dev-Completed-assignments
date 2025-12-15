@@ -16,11 +16,7 @@ class StoreItemListViewModel {
 
     func fetchMatchingItems() {
         if !searchText.isEmpty {
-            // set up query dictionary
             
-            // use the item controller to fetch items
-            // if successful, use the main queue to set self.items
-            // otherwise, print an error to the console
         }
     }
 }
@@ -42,7 +38,6 @@ struct StoreItemListView: View {
 
                 HStack {
                     TextField("Search...", text: $viewModel.searchText) {
-                        
                     }
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .submitLabel(.search)

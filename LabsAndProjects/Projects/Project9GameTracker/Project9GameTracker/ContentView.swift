@@ -7,15 +7,36 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct GamesListView: View {
+    @State var viewModel = ViewModel.shared
+    
     var body: some View {
-        VStack {
-            
+        NavigationStack {
+            VStack {
+                ForEach(viewModel.games) { game in
+                    HStack {
+                        Image(systemName: "\(game.gameImage)")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                        Text("\(game.gameName)")
+                        Text("Current Winner: \(game.currentWinner.name)")
+                        NavigationLink("Test") {
+                            ScoreboardView()
+                        }
+                    }
+                    .padding()
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            NavigationLink("+") {
+                                AddNewGameView()
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            .padding()
         }
-        .padding()
+        
     }
-}
-
-#Preview {
-    ContentView()
 }

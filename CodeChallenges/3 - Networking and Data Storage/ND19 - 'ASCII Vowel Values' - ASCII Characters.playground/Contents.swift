@@ -21,3 +21,28 @@
     //  Store their indices in the dictionary separately from their lowercase counterparts.
 
 import Foundation
+
+func vowelValues(from input: [Int]) -> [Character: [Int]] {
+    var a: [Int] = []
+    var e: [Int] = []
+    var i: [Int] = []
+    var o: [Int] = []
+    var u: [Int] = []
+
+    for (index, num) in input.enumerated() {
+        if num == 97 {
+            a.append(index)
+        } else if num == 101 {
+            e.append(index)
+        } else if num == 105 {
+            i.append(index)
+        } else if num == 111 {
+            o.append(index)
+        } else if num == 117 {
+            u.append(index)
+        }
+    }
+    return ["i": i, "o": o, "u": u, "e": e, "a": a]
+}
+
+print(vowelValues(from: [97, 103, 117, 105, 97]))

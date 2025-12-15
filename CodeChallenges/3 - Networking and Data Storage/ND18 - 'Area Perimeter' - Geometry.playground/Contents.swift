@@ -18,3 +18,16 @@
     //  Create a new function that takes three lengths for the three sides of a triangle. Calculate and return its perimeter and its area.
 
 import Foundation
+
+func areaPerimter(length a: Int, width b: Int) -> Int {
+    a == b ? a * b : a + a + b + b
+    
+//    if a == b {
+//        return a * b
+//    } else {
+//        return a + a + b + b
+//    }
+}
+
+print(areaPerimter(length: 5, width: 5))
+print(areaPerimter(length: 5, width: 10))

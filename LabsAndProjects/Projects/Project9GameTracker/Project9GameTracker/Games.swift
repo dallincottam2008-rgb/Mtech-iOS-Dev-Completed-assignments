@@ -6,15 +6,24 @@
 //
 import Foundation
 
-struct Game {
+struct Game: Identifiable, Equatable {
+    var id = UUID()
     var gameName: String
     var gameImage: String
     var highestScroreWins: Bool
     var sortPlayerByScore: Bool
     var players: [Player]
+    var currentWinner: Player = Player(name: "Default", currentScore: Int.min)
 }
 
-struct Player {
+struct Player: Identifiable, Equatable {
+    var id = UUID()
     var name: String
     var currentScore: Int
+}
+
+enum Symbols {
+    case dice
+    case controller
+    case arcade
 }

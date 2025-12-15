@@ -13,11 +13,12 @@ struct SearchResponse: Codable {
 struct StoreItem: Codable {
     var artistName: String
     var trackName: String
+    var trackImage: String
     
     enum CodingKeys: String, CodingKey {
         case artistName
         case trackName
-        
+        case trackImage
     }
     
 }

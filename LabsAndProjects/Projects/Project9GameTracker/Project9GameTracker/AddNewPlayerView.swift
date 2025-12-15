@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct AddNewPlayerView: View {
+    @Environment(\.dismiss) var dismiss
     @State var viewModel = ViewModel.shared
     @State var newPlayerName = ""
     @State var newPlayerScore = ""
@@ -27,6 +28,7 @@ struct AddNewPlayerView: View {
                     newPlayerName = ""
                     newPlayerScore = ""
                 }
+                dismiss()
             }) {
                 Text("Save")
             }

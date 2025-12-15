@@ -11,7 +11,7 @@ import SwiftUI
 struct Project9GameTrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            AddNewPlayerView()
+            GamesListView()
         }
     }
 }
