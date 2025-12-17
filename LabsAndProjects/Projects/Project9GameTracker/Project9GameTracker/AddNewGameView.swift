@@ -7,7 +7,8 @@
 import SwiftUI
 
 struct AddNewGameView: View {
-//    @State var viewModel = ViewModel.shared
+    @Environment(Router.self) var router
+    @State var viewModel = ViewModel.shared
 //    @State var symbols: [Symbols: Bool] = [.dice: false, .controller: false, .arcade: false] //["dice", "gamecontroller", "arcade.stick.console"]
     
     @State var symbolChosen: Symbols = .dice
@@ -16,23 +17,26 @@ struct AddNewGameView: View {
     @State var sortPlayerBy = true // true is hightest score, false is lowest
     @State var gamePlayers: [Player] = []
     var body: some View {
-        VStack {
-            Text("New Game")
-            TextField("Name", text: $gameName)
-                .textFieldStyle(.roundedBorder)
-                .padding(.horizontal, 30)
-            Text("Choose a Symbol")
-                .font(.custom("Chalkboard se", size: 25))
-            HStack {
-            
-            }
-            
-            // sort player by
-            // players
-            Button(action: {
-                    AddNewPlayerView()
-            }) {
-                Text("New Player")
+        NavigationStack {
+            VStack {
+                Text("New Game")
+                TextField("Name", text: $gameName)
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.horizontal, 30)
+                Text("Choose a Symbol")
+                    .font(.custom("Chalkboard se", size: 25))
+                HStack {
+                    
+                }
+                
+                // sort player by
+                // players
+                Button(action: {
+                    router.navigateTo(route: .newGame)
+                }) {
+                    Text("Add Player")
+                        .foregroundStyle(.black)
+                }
             }
         }
     }

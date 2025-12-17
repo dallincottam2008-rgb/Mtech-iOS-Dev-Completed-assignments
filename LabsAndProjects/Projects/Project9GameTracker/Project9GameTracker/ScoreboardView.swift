@@ -5,8 +5,11 @@
 //  Created by Dallin J Cottam on 12/11/25.
 //
 import SwiftUI
+import SwiftData
 
 struct ScoreboardView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Environment(Router.self) var router
     @State var viewModel = ViewModel.shared
     @State var currentGameIndex = 0
     
@@ -16,14 +19,23 @@ struct ScoreboardView: View {
                 PlayerRowScoreView(gameIndex: currentGameIndex, player: player, setPlayer: player)
                 Text("\(player.currentScore)")
             }
+            Button(action: {
+            }) {
+                Text("Save Test")
+                    .foregroundStyle(.black)
+            }
             
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink("+") {
-                    AddNewPlayerView()
-                } // need to chang to button with  a router
+                Button(action: {
+                    router.navigateTo(route: .newPlayer)
+                }) {
+                    Text("Add Player")
+                        .foregroundStyle(.black)
+                }
             }
         }
     }
+    
 }

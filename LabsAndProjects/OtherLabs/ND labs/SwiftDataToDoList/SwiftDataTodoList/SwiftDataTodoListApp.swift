@@ -1,19 +1,18 @@
 //
-//  Project9GameTrackerApp.swift
-//  Project9GameTracker
+//  SwiftDataTodoListApp.swift
+//  SwiftDataTodoList
 //
-//  Created by Dallin J Cottam on 12/11/25.
+//  Created by Parker Rushton on 5/30/25.
 //
-import SwiftData
+
 import SwiftUI
+import SwiftData
 
 @main
-struct Project9GameTrackerApp: App {
-    
+struct SwiftDataTodoListApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Game.self,
-            Player.self
+            TodoItem.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -23,10 +22,10 @@ struct Project9GameTrackerApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
-    
+
     var body: some Scene {
         WindowGroup {
-            RootView()
+            TodoItemsView()
         }
         .modelContainer(sharedModelContainer)
     }

@@ -10,7 +10,7 @@ import Observation
 @Observable
 class ViewModel {
     static let shared = ViewModel()
-    var games: [Game] = [Game(gameName: "Test", gameImage: "dice", highestScroreWins: true, sortPlayerByScore: false, players: [Player(name: "Test", currentScore: 12)])]
+    var games: [Game] = [Game(gameName: "Test", gameImage: "dice", highestScroreWins: true, sortPlayerByScore: false, players: [Player(name: "Test", currentScore: 12)], currentWinner: Player(name: "", currentScore: Int.min))]
     
     func newPlayer(gameNumber: Int, player: Player) {
         games[gameNumber].players.append(player)

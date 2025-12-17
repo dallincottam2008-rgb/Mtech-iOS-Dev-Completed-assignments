@@ -12,6 +12,10 @@
 
 //  MARK: Student response
 /*  Write your response below.
- 
- 
+ Swift
+ Swift UI
+ Swift data
+ Navigation
+ Swift animation
+ Learning more how the industry works
  */
